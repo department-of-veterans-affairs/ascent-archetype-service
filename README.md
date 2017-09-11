@@ -14,16 +14,16 @@ Then in the directory of your checkout run (make sure you're on the right branch
 
 Navigate to another directory where you'd like to generate your new starter project. Replace all the values in < > in the below command then run it:
 
-`mvn archetype:generate \
- -DinteractiveMode=false \
- -DarchetypeGroupId=gov.va.ascent \
- -DarchetypeArtifactId=ascent-starter-archetype \
- -DarchetypeVersion=0.0.1-SNAPSHOT \
- -DgroupId=<InsertYourGroupID> \
- -DartifactId=<InsertYourArtifactID> \
- -DserviceName="<InsertHumanReadableServiceName>" \
- -Dversion=<InsertYourVersion> \
- -DservicePort=<InsertYourPort>`
+    mvn archetype:generate \
+    -DinteractiveMode=false \
+    -DarchetypeGroupId=gov.va.ascent \
+    -DarchetypeArtifactId=ascent-starter-archetype \
+    -DarchetypeVersion=0.0.1-SNAPSHOT \
+    -DgroupId=<InsertYourGroupID> \
+    -DartifactId=<InsertYourArtifactID> \
+    -DserviceName="<InsertHumanReadableServiceName>" \
+    -Dversion=<InsertYourVersion> \
+    -DservicePort=<InsertYourPort>
 
  ## Notes
 
