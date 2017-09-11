@@ -1,0 +1,12 @@
+version: '3'
+services:
+   ${artifactId}:
+    image: ascent/${artifactId}
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - VAULT_TOKEN=${VAULT_TOKEN}
+    networks:
+      - ascentplatformdockerbuild_ascentnet
+networks:
+ ascentplatformdockerbuild_ascentnet:
+    external: true

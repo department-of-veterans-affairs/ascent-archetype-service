@@ -1,0 +1,81 @@
+#set ($d = "$")
+
+spring:
+  application:
+    name: "@project.name@"
+  config:
+    name: "@project.name@"
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: ascent-config
+      failFast: true
+      label: development
+      username: ${d}{config.username:config}
+      password: ${d}{config.password:default}
+      retry:
+        initialInterval: 10000
+        maxInterval: 300000
+        multiplier: 1.2
+        maxAttempts: 10
+      token: ${d}{VAULT_TOKEN:vaultroot}
+eureka:
+  client:
+    #false by default in local dev mode
+    enabled: false
+  instance:
+    metadata-map:
+      version:  "@project.version@"
+      artifact: "@project.artifactId@"
+      name: "@project.name@"
+      description: "@project.description@"
+      appType: REST-API
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    config:
+      discovery:
+        enabled: false
+      failFast: false
+
+---
+spring:
+  profiles: local-int
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@localhost:${d}{discovery.server.port:8761}/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 10
+
+
+---
+
+spring:
+  profiles: docker-demo
+  cache:
+    type: redis
+  redis:
+    sentinel:
+      master: redismaster
+      nodes: redis-sentinel:26379,redis-sentinel2:26379,redis-sentinel2:26379
+    pool:
+     max-idle: 8
+     min-idle: 0
+     max-active: 8
+     max-wait: -1
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@ascent-discovery:${d}{discovery.server.port:8761}/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 20
+---
