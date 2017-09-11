@@ -1,1 +1,1 @@
-# ascent-cache
+# Ascent Starter Maven Archetype
