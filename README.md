@@ -6,9 +6,9 @@ This is a starter project to create a microservice leveraging the Ascent Platfor
 
 Clone this repo to your local machine:
 
-`git clone repo URL`
+`git clone repo https://github.com/department-of-veterans-affairs/ascent-starter-archetype.git`
 
-Then in the directory of your checkout run:
+Then in the directory of your checkout run (make sure you're on the right branch):
 
 `mvn clean install`
 
