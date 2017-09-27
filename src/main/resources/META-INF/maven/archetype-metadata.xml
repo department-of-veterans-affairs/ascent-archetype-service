@@ -49,6 +49,8 @@
         <include>.env</include>
         <include>docker-compose.yml</include>
         <include>.docker-jar-project-marker</include>
+        <include>Dockerfile</include>
+        <include>docker-compose.override.yml</include>
       </includes>
     </fileSet>
     <fileSet encoding="UTF-8" filtered="true" packaged="false">
