@@ -78,4 +78,25 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 20
+    hostname: "@project.artifactId@"
+    preferIpAddress: false
 ---
+
+spring:
+    profiles: aws-ci, aws-dev, aws-stage, aws-prod
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@${d}{discovery.server.peer1.name:ascent-discovery}:${d}{discovery.server.port:8761}/eureka/,http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@${d}{discovery.server.peer2.name:ascent-discovery}:${d}{discovery.server.port:8761}/eureka/
+    preferSameZoneEureka: true
+  instance:
+    hostname: "@project.artifactId@"
+    preferIpAddress: false
+---
+
+spring:
+    profiles: aws-stage, aws-prod
+    cloud: 
+      config:
+        label: master
