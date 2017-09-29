@@ -8,9 +8,6 @@
     <parent>
         <groupId>gov.va.ascent</groupId>
         <artifactId>ascent-platform-parent</artifactId>
-        <!-- this should match wss.version property below. can't use property project.parent.version
-            because that property won't resolve properly in the child poms that are 2
-            levels down. -->
         <version>0.0.1-SNAPSHOT</version>
         <!-- Force artifact resolution from repository -->
         <relativePath />
@@ -57,12 +54,11 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>gov.va.ascent</groupId>
-            <artifactId>ascent-framework</artifactId>
-            <version>${ascent.version}</version>
-        </dependency>
         <!-- Ascent Starters -->
+        <dependency>
+			<groupId>gov.va.ascent</groupId>
+			<artifactId>ascent-platform-starter</artifactId>
+		</dependency>
         <dependency>
             <groupId>gov.va.ascent</groupId>
             <artifactId>ascent-platform-starter-security</artifactId>
@@ -142,7 +138,6 @@
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
-            <version>4.7</version>
         </dependency>
 
         <dependency>
@@ -162,7 +157,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.5</version>
         </dependency>
 
         <!-- test dependencies -->
