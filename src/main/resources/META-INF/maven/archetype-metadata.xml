@@ -49,6 +49,7 @@
       <directory></directory>
       <includes>
         <include>.env</include>
+        <include>.gitignore</include>
         <include>docker-compose.yml</include>
         <include>.docker-jar-project-marker</include>
         <include>Dockerfile</include>

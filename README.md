@@ -38,25 +38,30 @@ Navigate to another directory where you'd like to generate your new starter proj
 
     @RestController
     public class HomeController {
-
+    
         final static Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
-
+    
         @RequestMapping(value = "/", method = RequestMethod.GET)
-        public HelloWorld helloWorld(){
+        public ResponseEntity<HelloWorld> helloWorld(){
             LOGGER.info("Request received for Hello World");
             HelloWorld helloWorld = new HelloWorld();
-            return helloWorld;
+            helloWorld.setHelloWorld("Test Hello World!");
+    
+            return new ResponseEntity<HelloWorld>(helloWorld, HttpStatus.OK);
         }
-
+    
     }
-
-    class HelloWorld{
+    
+    class HelloWorld extends ServiceResponse{
+        
+        private static final long serialVersionUID = -3634564399169817507L;
+    
         private String helloWorld = "Hello World!";
-
+    
         public String getHelloWorld() {
             return helloWorld;
         }
-
+    
         public void setHelloWorld(String helloWorld) {
             this.helloWorld = helloWorld;
         }
