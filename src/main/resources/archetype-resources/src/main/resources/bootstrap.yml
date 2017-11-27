@@ -25,6 +25,8 @@ eureka:
     #false by default in local dev mode
     enabled: false
   instance:
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
     metadata-map:
       version:  "@project.version@"
       artifact: "@project.artifactId@"
@@ -50,11 +52,6 @@ eureka:
     enabled: true
     serviceUrl:
       defaultZone: http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@localhost:${d}{discovery.server.port:8761}/eureka/
-  instance:
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 10
-
-
 ---
 
 spring:
@@ -74,10 +71,8 @@ eureka:
   client:
     enabled: true
     serviceUrl:
-      defaultZone: http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@ascent-discovery:${d}{discovery.server.port:8761}/eureka/
+      defaultZone: http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@${d}{discovery.server.peer1.name:ascent-discovery}:${d}{discovery.server.peer1.port:8761}/eureka/,http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@${d}{discovery.server.peer2.name:ascent-discovery-peer}:${d}{discovery.server.peer2.port:8761}/eureka/
   instance:
-    leaseRenewalIntervalInSeconds: 10
-    leaseExpirationDurationInSeconds: 20
     hostname: "${d}{INSTANCE_HOST_NAME:@project.artifactId@}"
     preferIpAddress: false
 ---
@@ -88,7 +83,7 @@ eureka:
   client:
     enabled: true
     serviceUrl:
-      defaultZone: http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@${d}{discovery.server.peer1.name:ascent-discovery}:${d}{discovery.server.port:8761}/eureka/,http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@${d}{discovery.server.peer2.name:ascent-discovery}:${d}{discovery.server.port:8761}/eureka/
+      defaultZone: http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@${d}{discovery.server.peer1.name:ascent-discovery}:${d}{discovery.server.peer1.port:8761}/eureka/,http://${d}{discovery.username:eureka}:${d}{discovery.password:default}@${d}{discovery.server.peer2.name:ascent-discovery-peer}:${d}{discovery.server.peer2.port:8761}/eureka/
     preferSameZoneEureka: true
   instance:
     hostname: "${d}{INSTANCE_HOST_NAME:@project.artifactId@}"
