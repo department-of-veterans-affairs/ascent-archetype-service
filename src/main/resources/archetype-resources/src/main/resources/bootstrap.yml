@@ -61,7 +61,7 @@ spring:
   redis:
     sentinel:
       master: redismaster
-      nodes: redis-sentinel:26379,redis-sentinel2:26379,redis-sentinel2:26379
+      nodes: redis-sentinel:26379,redis-sentinel2:26379,redis-sentinel3:26379
     pool:
      max-idle: 8
      min-idle: 0
