@@ -15,10 +15,10 @@ spring:
       username: ${d}{ascent.security.username:admin}
       password: ${d}{ascent.security.password:default}
       retry:
-        initialInterval: 10000
-        maxInterval: 300000
+        initialInterval: 3000
+        maxInterval: 5000
         multiplier: 1.2
-        maxAttempts: 10
+        maxAttempts: 20
       token: ${d}{VAULT_TOKEN:vaultroot}
 eureka:
   client:

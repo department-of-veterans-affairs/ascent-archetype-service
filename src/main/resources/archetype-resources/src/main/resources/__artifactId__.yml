@@ -1,4 +1,5 @@
 #set ($d = "$")
+# Learn: https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-use-yaml-for-external-properties
 
 server:
   port: ${servicePort}
@@ -17,9 +18,29 @@ spring:
   cloud:
     bus:
       enabled: false
-#---------------------------------------------------
+########################################
+# REDIS Ascent Custom Cache Properties
+# Default Expiration and For Each Bucket
+########################################
+ascent:
+  cache:
+    defaultExpires: 86400 # (Seconds)
+  ############################################################################
+  #Property configuration to enable or disable JWT security for service calls
+  ############################################################################
+  security:
+    jwt:
+      enabled: false
+      filter-process-url: /${artifactId}/v?/**
+  swagger:
+    title: ${serviceName} v1 API Documentation
+    description: API Error Keys <a href="swagger/error-keys.html">error keys</a>
+    groupName: ${artifactId}-v1
+    version: ${d}{info.build.version}
+    securePaths: /${artifactId}.*
+####################################### 
 #   Logging Level for packages
-#---------------------------------------------------
+#######################################
 logging:
   level:
     gov:
@@ -42,12 +63,15 @@ security:
     password: ${d}{ascent.security.password:default}
 management.health.rabbit.enabled: false
 management.health.redis.enabled: false
+#######################################
 #sanitize properties for keys when using /configprops.
+#######################################
 endpoints:
   configprops:
     keys-to-sanitize: 'enabled, password'
-
+#######################################
 #  hystrix command overrides
+#######################################
 hystrix:
   shareSecurityContext: true
   command:
@@ -81,20 +105,34 @@ hystrix:
             # Default Value: 1000
             timeoutInMilliseconds: 20000
 
-
+#######################################
 # Sleuth configuration
 # To skip specific patterns being exported, added few more customs on top of default skip pattern
 # see org.springframework.cloud.sleuth.instrument.web.TraceFilter.DEFAULT_SKIP_PATTERN
+#######################################
 spring.sleuth.web.skipPattern: (/api/.*/webjars.*|/api/.*/v2/api-docs.*|/api/.*/swagger-resources.*|/api/.*/swagger-ui.*|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\\.png|.*\\.css|.*\\.js|.*\\.html|/favicon.ico|/hystrix.stream)
-#Property configuration to enable or disable JWT security for service calls
+    
+---
+spring.profiles: default, local-int
+spring.profiles.include: remote_client_sims, embedded-redis
 ascent:
+  cache:
+    redis-config:
+      host: localhost
+      port: 6379
   security:
     jwt:
+      secret: vetsgov
+spring:
+  cache:
+    type: redis
+  cloud:
+    bus:
       enabled: false
-      filter-process-url: /${artifactId}/v?/**
-  swagger:
-    title: ${serviceName} v1 API Documentation
-    description: API Error Keys <a href="swagger/error-keys.html">error keys</a>
-    groupName: ${artifactId}-v1
-    version: ${d}{info.build.version}
-    securePaths: /${artifactId}.*
+  redis:
+    host: localhost
+    port: 6379
+  sleuth:
+    stream:
+      enabled: false
+---
