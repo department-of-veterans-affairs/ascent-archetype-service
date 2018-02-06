@@ -75,7 +75,7 @@ Once your platform is running execute this command in your project directory:
 
 `start-all.sh`
 
-Navigate to the [Ascent Dashboard Swagger URL page](http://ascent-dashboard:8763/swagger-dash) and your project should be listed.
+Navigate to the [Ascent Dashboard Swagger URL page](http://ascent-dashboard:8763/swagger-dash) and your project should be listed. If it isn't then check the ascent-gateway configuration, namely ascent-gateway.yml file in ascent-ext-configs repo, as you may have static routing enabled for docker profiles.
 
 There should be the `index-controller` that was added as well as a `token-resource` in the list. Get a JWT token through the `token-resource` service. Then click on Authorize in the upper right corner and type in `Bearer < paste token from response body of token-resource POST>`. Then click login.
 
