@@ -1,38 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>gov.va.ascent</groupId>
-    <artifactId>ascent-starter-archetype</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>maven-archetype</packaging>
-    <name>ascent-starter-maven-archetype</name>
-    <description>Maven archetype for Ascent Platform Starter Projects</description>
-
-    <repositories>
-        <repository>
-            <id>vets</id>
-            <name>Vets.gov Nexus Repository</name>
-            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>vets</id>
-            <name>Vets.gov Nexus Repository</name>
-            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
-        </pluginRepository>
-    </pluginRepositories>
-    <distributionManagement>
-        <repository>
-            <id>vets.release</id>
-            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>vets.snapshot</id>
-            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
+  <groupId>gov.va.ascent</groupId>
+  <artifactId>ascent-reactor-archetype</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>maven-archetype</packaging>
+  <name>ascent-reactor-maven-archetype</name>
+  <description>Maven archetype for Microservice Projects</description>
 
     <build>
         <extensions>
@@ -59,4 +34,29 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <repositories>
+        <repository>
+            <id>vets</id>
+            <name>Vets.gov Nexus Repository</name>
+            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>vets</id>
+            <name>Vets.gov Nexus Repository</name>
+            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <distributionManagement>
+        <repository>
+            <id>vets.release</id>
+            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>vets.snapshot</id>
+            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

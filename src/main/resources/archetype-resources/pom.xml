@@ -1,150 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>gov.va.ascent</groupId>
+		<artifactId>ascent-platform-parent</artifactId>
+		<version>0.0.4-SNAPSHOT</version>
+		<!-- Force artifact resolution from repository -->
+	</parent>
 
-    <parent>
-        <groupId>gov.va.ascent</groupId>
-        <artifactId>ascent-platform-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <!-- Force artifact resolution from repository -->
-        <relativePath />
-    </parent>
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<packaging>pom</packaging>
+	<version>${version}</version>
+	<name>${project.artifactId}</name>
+	<description>Reactor and Parent POM for VetsAPI Service</description>
 
-    <artifactId>${artifactId}</artifactId>
-    <groupId>${groupId}</groupId>
-    <version>${version}</version>
-    <packaging>jar</packaging>
+	<modules>
+	    <module>${serviceName}-inttest</module>
+    	    <module>${serviceName}-modelvalidators</module>
+    	    <module>${serviceName}-services</module>
+  	</modules>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <!-- Docker properties to add min and max memory for spring boot jar start up -->
-        <docker.java.opts.ms>-Xms64m</docker.java.opts.ms>
-        <docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
-        <ascent.version>0.0.1-SNAPSHOT</ascent.version>
-    </properties>
+	<properties>
+		<!-- ascent test framework -->
+		<ascent.test.framework.version>0.0.4-SNAPSHOT</ascent.test.framework.version>
+		
+		<!-- vetsapi-refdata properties -->
+		<ascent.jsr303keygen.maven.plugin.version>[0.0.1,)</ascent.jsr303keygen.maven.plugin.version>
+		
+		<!-- for Ascent platform versions, see DependencyManagement section below -->
+		
+		<!-- maven properties -->
+		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
+		<maven.jaxb2.plugin.version>0.13.1</maven.jaxb2.plugin.version>
+		<maven.cucumber.reporting.version>2.0.0</maven.cucumber.reporting.version>
+		<krasa.jaxb.tools.version>1.5</krasa.jaxb.tools.version>
+		<jaxb2.basics.annotate.version>1.0.2</jaxb2.basics.annotate.version>
+		
+		<!-- Docker properties to add min and max memory for spring boot jar start up -->
+		<docker.java.opts.ms>-Xms64m</docker.java.opts.ms>
+		<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
+		
+		<!-- java properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
 
-    <dependencies>
-        <!-- Ascent Starters -->
-        <dependency>
+	<!-- dependencies inherited by all projects -->
+	<dependencies>
+		<dependency>
 			<groupId>gov.va.ascent</groupId>
-			<artifactId>ascent-platform-starter</artifactId>
+			<artifactId>ascent-test-framework</artifactId>
+			<scope>test</scope>
+			<version>${ascent.test.framework.version}</version>
 		</dependency>
-        <dependency>
-            <groupId>gov.va.ascent</groupId>
-            <artifactId>ascent-platform-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>gov.va.ascent</groupId>
-            <artifactId>ascent-platform-starter-swagger</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>gov.va.ascent</groupId>
-            <artifactId>ascent-platform-starter-cache</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>gov.va.ascent</groupId>
-            <artifactId>ascent-platform-starter-logger</artifactId>
-        </dependency>
-        <!-- spring-boot dependencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-actuator-docs</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
+ 	</dependencies>
 
-        <!-- spring cloud dependencies -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.retry</groupId>
-            <artifactId>spring-retry</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-hystrix</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-        </dependency>
-        <!-- Spring-cloud sleuth dependency for generating instrumentation data for audit purposes -->
-	    <dependency> 
-	       <groupId>org.springframework.cloud</groupId>
-	       <artifactId>spring-cloud-sleuth-stream</artifactId>
-	    </dependency>
-	    <dependency> 
-	       <groupId>org.springframework.cloud</groupId>
-	       <artifactId>spring-cloud-starter-sleuth</artifactId>
-	    </dependency>	   
-	    <dependency> 
-	       <groupId>org.springframework.cloud</groupId>
-	       <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
-	    </dependency>
-        <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-base</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-json-provider</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-jaxb-annotations</artifactId>
-        </dependency>
-
-        <!-- misc dependencies -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-
-        <!-- test dependencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>${maven.cucumber.reporting.version}</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>cucumber-ascent-framework</projectName>
+							<outputDirectory>${project.build.directory}/site/cucumber-reports</outputDirectory>
+							<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+							<skippedFails>true</skippedFails>
+							<enableFlashCharts>false</enableFlashCharts>
+							<buildNumber>42</buildNumber>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -1,15 +1,21 @@
-version: '3'
+version: '3.3'
 services:
    ${artifactId}:
     build:
         context: .
     image: ascent/${artifactId}
     environment:
-      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - VAULT_ADDR=${VAULT_ADDR}
       - VAULT_TOKEN=${VAULT_TOKEN}
+    logging:
+      driver: fluentd
+      options:
+        fluentd-async-connect: "true"
+        fluentd-max-retries: "10"
+        fluentd-retry-wait: "30s"
     networks:
-          - ascentnet
-networks:
- ascentnet:
+      - ascentnet
+networks: 
+ ascentnet: 
     external:
       name: ascent_ascentnet

@@ -1,0 +1,167 @@
+version: '3'
+services:
+
+  vetsapi-refdata:
+    image: ascent/vetsapi-refdata
+    environment:
+      - SPRING_PROFILES_ACTIVE=aws-ci
+      - VAULT_ADDR=${VAULT_ADDR}
+      - VAULT_TOKEN=${REFDATA_VAULT_TOKEN}
+    networks:
+      - ascentnet
+
+####### Platform Services ########
+
+  ascent-amqp:
+    image: ascent/rabbitmq
+    networks:
+    - ascentnet
+    environment:
+    - VAULT_ADDR=${VAULT_ADDR}
+    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+
+  ascent-discovery:
+    image: ascent/ascent-discovery
+    hostname: ascent-discovery
+    ports:
+    - 8761
+    environment:
+    - SPRING_PROFILES_ACTIVE=aws-ci
+    - VAULT_ADDR=${VAULT_ADDR}
+    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    - discovery.server.peer.name=ascent-discovery-peer
+    networks:
+    - ascentnet
+
+  ascent-discovery-peer:
+    image: ascent/ascent-discovery
+    hostname: ascent-discovery-peer
+    environment:
+    - SPRING_PROFILES_ACTIVE=aws-ci
+    - VAULT_ADDR=${VAULT_ADDR}
+    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    - discovery.server.peer.name=ascent-discovery
+    networks:
+    - ascentnet
+
+  ascent-config:
+    image: ascent/ascent-config
+    ports:
+    - 8760
+    environment:
+    - SPRING_PROFILES_ACTIVE=aws-ci
+    - VAULT_ADDR=https://${VAULT_HOST}:8200
+    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    - VAULT_HOST=${VAULT_HOST}
+    - VAULT_SCHEME=https
+    networks:
+    - ascentnet
+
+  ascent-gateway:
+    image: ascent/ascent-gateway
+    ports:
+    - 8762
+    environment:
+    - SPRING_PROFILES_ACTIVE=aws-ci
+    - VAULT_ADDR=${VAULT_ADDR}
+    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    networks:
+    - ascentnet
+  ascent-dashboard:
+    image: ascent/ascent-dashboard
+    ports:
+    - 8763
+    environment:
+    - SPRING_PROFILES_ACTIVE=aws-ci
+    - VAULT_ADDR=${VAULT_ADDR}
+    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    networks:
+    - ascentnet
+
+  ascent-zipkin:
+    image: ascent/ascent-zipkin
+    environment:
+    - SPRING_PROFILES_ACTIVE=aws-ci
+    - VAULT_ADDR=${VAULT_ADDR}
+    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    networks:
+    - ascentnet
+
+###### Cache Services ########
+
+  redis-master:
+    image: ascent/redis-sentinel
+    environment:
+      - START_COMMAND=sh /redis/redis-wrapper.sh
+      - VAULT_ADDR=${VAULT_ADDR}
+      - VAULT_TOKEN=${REDIS_VAULT_TOKEN}
+    networks:
+      - ascentnet
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+      
+  redis-slave:
+    image: ascent/redis-sentinel
+    environment:
+      - START_COMMAND=sh /redis/redis-wrapper.sh --slaveof redis-master 6379
+      - VAULT_ADDR=${VAULT_ADDR}
+      - VAULT_TOKEN=${REDIS_VAULT_TOKEN}
+    links:
+      - redis-master
+    networks:
+      - ascentnet
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+      
+  # Instance 1
+  redis-sentinel:
+    image: ascent/redis-sentinel
+    environment:
+      - VAULT_ADDR=${VAULT_ADDR}
+      - VAULT_TOKEN=${REDIS_VAULT_TOKEN}
+    links:
+      - redis-master
+    networks:
+      - ascentnet
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+      
+  # Instance 2
+  redis-sentinel2:
+    image: ascent/redis-sentinel
+    environment:
+      - VAULT_ADDR=${VAULT_ADDR}
+      - VAULT_TOKEN=${REDIS_VAULT_TOKEN}
+    links:
+      - redis-master
+    networks:
+      - ascentnet
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+  
+  # Instance 3
+  redis-sentinel3:
+    image: ascent/redis-sentinel
+    environment:
+      - VAULT_ADDR=${VAULT_ADDR}
+      - VAULT_TOKEN=${REDIS_VAULT_TOKEN}
+    links:
+      - redis-master
+    networks:
+      - ascentnet
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+    
+networks:
+  ascentnet:
+    driver: overlay

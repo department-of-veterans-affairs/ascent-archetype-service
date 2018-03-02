@@ -1,0 +1,32 @@
+@Library('ascent') _
+
+microservicePipeline {
+    //Specify string of comma separated upstream projects that will
+    //trigger this build if successful
+    upstreamProjects = '../ascent-platform/development'
+
+    dockerBuilds = [
+        "ascent/vetsapi-refdata": "vetsapi-refdata-services"
+    ]
+
+    /******  Testing *******/
+
+    /*
+    Define a mapping of environment variables that will be populated with Vault token values
+    from the associated vault token role
+    */
+    vaultTokens = [
+        "REFDATA_VAULT_TOKEN": "refdata",
+        "PLATFORM_VAULT_TOKEN": "ascent-platform",
+        "REDIS_VAULT_TOKEN": "redis"
+    ]
+
+    //Test Environment Definition
+    testEnvironment = ['vetsapi-refdata-inttest/prod-env.yml']
+
+    //Name of the service to test
+    serviceToTest = 'ascent-gateway'
+
+    //Directory containing JSON files for Cucumber reports
+    cucumberReportDirectory = 'vetsapi-refdata-inttest/target'
+}

@@ -1,5 +1,5 @@
-version: '3'
-services:
+version: '3.3'
+services: 
    ${artifactId}:
     build:
         context: .
@@ -9,7 +9,7 @@ services:
       - VAULT_ADDR=http://vault:8200
       - VAULT_TOKEN=vaultroot
 
-networks:
- ascentnet:
+networks: 
+ ascentnet: 
     external:
       name: ascentplatformdockerbuild_ascentnet

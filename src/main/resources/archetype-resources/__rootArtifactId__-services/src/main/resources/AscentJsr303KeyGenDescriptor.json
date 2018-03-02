@@ -1,0 +1,13 @@
+{
+  "AscentJsr303KeyGenDescriptor" : {
+  	"customMessageBundles" : [ "messages"],
+    "operationDescriptors" : [ 
+	    {
+	      "name" : "",
+	      "description" : "",
+		  "genKeysFromInterfaces" :[""],
+	      "genJsr303KeysFromClasses" : [ "" ]
+	    }
+    ]
+  }
+}

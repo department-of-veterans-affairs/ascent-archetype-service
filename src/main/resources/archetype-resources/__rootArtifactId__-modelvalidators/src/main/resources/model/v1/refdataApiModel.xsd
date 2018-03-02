@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:afw="http://www.va.gov/ascent/framework/schema/v1"
+
+	xmlns="http://gov.va/vetsapi/refdata/model/v1" targetNamespace="http://gov.va/vetsapi/refdata/model/v1"
+>
+
+	<!-- XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX
+
+		This file originates in the vetsapi-refdata-modelvalidators project
+		If you make changes to any other copy of this file (for example in the services project),
+		YOUR WORK WILL BE OVERWRITTEN AUTOMATICALLY BY MAVEN.
+
+		Make your changes in vetsapi-refdata-modelvalidators/src/main/resources/model/
+
+		XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+	<xs:import schemaLocation="../../mvn-copied/xsd/ascent-framework-types.xsd" namespace="http://www.va.gov/ascent/framework/schema/v1" />
+
+	<!--************************************************************************************************************************************
+		REQUEST+RESPONSE OBJECTS
+		************************************************************************************************************************************* -->
+
+	<xs:element name="countryResponse" type="CountryResponse" />
+	<xs:complexType name="CountryResponse">
+		<xs:complexContent>
+			<xs:extension base="afw:serviceResponse">
+				<xs:sequence>
+					<xs:element name="countries" type="xs:string" minOccurs="0" maxOccurs="500" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="stateResponse" type="StateResponse" />
+	<xs:complexType name="StateResponse">
+		<xs:complexContent>
+			<xs:extension base="afw:serviceResponse">
+				<xs:sequence>
+					<xs:element name="states" type="xs:string" minOccurs="0" maxOccurs="70" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MedicalTreatmentFacilityResponse">
+		<xs:complexContent>
+			<xs:extension base="afw:serviceResponse">
+				<xs:sequence>
+					<xs:element name="facilities" type="MedicalTreatmentFacility" minOccurs="0" maxOccurs="500" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="intakeSitesResponse" type="IntakeSitesResponse" />
+	<xs:complexType name="IntakeSitesResponse">
+		<xs:complexContent>
+			<xs:extension base="afw:serviceResponse">
+				<xs:sequence>
+					<xs:element name="intakeSites" type="xs:string" minOccurs="0" maxOccurs="800" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DisabilityResponse">
+		<xs:complexContent>
+			<xs:extension base="afw:serviceResponse">
+				<xs:sequence>
+					<xs:element name="disability" type="Disability" minOccurs="0" maxOccurs="1500" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MedicalTreatmentFacilityRequest">
+		<xs:complexContent>
+			<xs:extension base="afw:serviceRequest">
+				<xs:sequence>
+					<xs:element name="stateCode" type="xs:string" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!--************************************************************************************************************************************
+		MODEL OBJECTS
+		************************************************************************************************************************************* -->
+
+	<xs:complexType name="MedicalTreatmentFacility">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="city" type="xs:string" />
+			<xs:element name="state" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Disability">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="endDate" type="xs:dateTime" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
+
