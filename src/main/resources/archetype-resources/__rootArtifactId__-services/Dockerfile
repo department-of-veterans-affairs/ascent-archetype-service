@@ -1,4 +1,6 @@
+#set ($d = "$")
 FROM ascent/ascent-base
 
-ENV JAR_FILE "target/vetsapi-refdata-services.jar"
-ADD target/vetsapi-refdata-services.jar $JAR_FILE
+ENV JAR_FILE "/${artifactId}-services.jar"
+ADD target/${artifactId}-services.jar ${d}JAR_FILE
+
