@@ -39,7 +39,7 @@
         <include>.project</include>
       </includes>
     </fileSet>
-    <fileSet encoding="UTF-8">
+    <fileSet filtered="true" encoding="UTF-8">
       <directory></directory>
       <includes>
         <include>start-all.sh</include>
@@ -140,6 +140,7 @@
           <includes>
             <include>**/*.xml</include>
             <include>**/*.properties</include>
+            <include>*services/*.yml</include>
           </includes>
         </fileSet>
         <fileSet encoding="UTF-8">
@@ -183,7 +184,7 @@
             <include>.project</include>
           </includes>
         </fileSet>
-        <fileSet encoding="UTF-8">
+        <fileSet filtered="true" encoding="UTF-8">
           <directory></directory>
           <includes>
             <include>.factorypath</include>
