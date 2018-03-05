@@ -14,6 +14,7 @@ Then in the directory of your checkout run (make sure you're on the right branch
 
 Navigate to another directory where you'd like to generate your new starter project. Replace all the values in < > in the below command then run it:
 
+
     mvn archetype:generate \
     -DinteractiveMode=false \
     -DarchetypeGroupId=gov.va.ascent \
@@ -21,9 +22,52 @@ Navigate to another directory where you'd like to generate your new starter proj
     -DarchetypeVersion=0.0.1-SNAPSHOT \
     -DgroupId=<InsertYourGroupID> \
     -DartifactId=<InsertYourArtifactID> \
-    -DserviceName="<InsertHumanReadableServiceName>" \
     -Dversion=<InsertYourVersion> \
-    -DservicePort=<InsertYourPort>
+    -DartifactName=<InsertYourArtifactName> \
+    -DserviceName=<InsertYourServiceName> \
+    -DservicePort=<InsertYourPort>  
+
+Here is the example:
+
+    mvn archetype:generate \
+    -DinteractiveMode=false \
+    -DarchetypeGroupId=gov.va.ascent \
+    -DarchetypeArtifactId=ascent-starter-archetype \
+    -DarchetypeVersion=0.0.1-SNAPSHOT \
+    -DgroupId=gov.va.wss.intenttofile \
+    -DartifactId=wss-intenttofile \
+    -Dversion=0.0.1-SNAPSHOT \
+    -DartifactName=WssIntenttoFile \
+    -DserviceName=wss-intenttofile \
+    -DservicePort=8082
+
+Run the below commands. Replace the PathToApp with actual path.
+
+    cd /PathToApp/wss-intenttofile/wss-intenttofile-inttest
+    sed -i -- 's/__rootArtifactId__/wss-intenttofile/g' pom.xml
+    rm pom.xml--
+
+    cd /PathToApp/wss-intenttofile/wss-intenttofile-modelvalidators
+    sed -i -- 's/__rootArtifactId__/wss-intenttofile/g' pom.xml
+    rm pom.xml--
+
+    cd /PathToApp/wss-intenttofile/wss-intenttofile-services
+    sed -i -- 's/__rootArtifactId__/wss-intenttofile/g' pom.xml
+    rm pom.xml--
+
+    cd /PathToApp/wss-intenttofile/wss-intenttofile-services
+    sed -i -- 's/${artifactId}/wss-intenttofile-services/g' Dockerfile
+    rm Dockerfile--
+
+    cd /PathToApp/wss-intenttofile
+    sed -i -- 's/${artifactId}/wss-intenttofile-services/g' docker-compose.yml
+    sed -i -- 's/${artifactId}/wss-intenttofile-services/g' docker-compose.override.yml
+    rm docker-compose.yml--
+    rm docker-compose.override.yml--
+
+    cd /PathToApp/wss-intenttofile/wss-intenttofile-services/src/main/resources/
+    mv wss-intenttofile-services.properties wss-intenttofile-services.yml    
+
 
  ## Notes
 
