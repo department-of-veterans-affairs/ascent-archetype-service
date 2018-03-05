@@ -4,7 +4,7 @@
 
   <groupId>gov.va.ascent</groupId>
   <artifactId>ascent-starter-archetype</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
   <name>ascent-reactor-maven-archetype</name>
   <description>Maven archetype for Microservice Projects</description>
