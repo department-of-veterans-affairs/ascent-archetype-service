@@ -5,8 +5,5 @@
   
 <suite name="Default suite" verbose="1" parallel="classes" thread-count="1">
   <test name="AscentRunnerTest">
-    <classes>
- <class name="${package}.runner.VetsApiRefDataRunner"/> 
-  </classes>
   </test>
 </suite>

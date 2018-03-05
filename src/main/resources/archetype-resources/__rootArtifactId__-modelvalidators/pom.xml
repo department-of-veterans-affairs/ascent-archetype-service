@@ -115,19 +115,6 @@
 						3. Configure generatePackage for the version, e.g. xxx.api.v2.transfer
 						4. Configure schemaDirectory for the version, e.g. xxx/model/v2
 					-->
-					<execution>
-						<id>xjc-v1</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<generatePackage>gov.va.vetsapi.refdata.api.v1.transfer</generatePackage>
-							<bindingDirectory>${project.basedir}/src/main/resources/model</bindingDirectory>
-							<schemaDirectory>${project.basedir}/src/main/resources/model/v1</schemaDirectory>
-							<cleanPackageDirectories>true</cleanPackageDirectories>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 			<plugin>
