@@ -37,7 +37,6 @@
 				This allows executions in the maven-jaxb2-plugin to function
 				without regenerating the classes declared in the framework XSD.
 				- ascent-framework classes are bound in JAXB-bindings.xjb
-				- ascent-framework classes are referenced in refdataApiModel.xsd
 			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

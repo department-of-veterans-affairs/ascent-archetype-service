@@ -26,7 +26,7 @@
 		<!-- ascent test framework -->
 		<ascent.test.framework.version>0.0.4-SNAPSHOT</ascent.test.framework.version>
 		
-		<!-- vetsapi-refdata properties -->
+		<!-- vetservices properties -->
 		<ascent.jsr303keygen.maven.plugin.version>[0.0.1,)</ascent.jsr303keygen.maven.plugin.version>
 		
 		<!-- for Ascent platform versions, see DependencyManagement section below -->

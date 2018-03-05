@@ -1,6 +1,5 @@
-#set ($d = "$")
 FROM ascent/ascent-base
 
-ENV JAR_FILE "target/${artifactId}.jar"
-ADD target/${artifactId}.jar ${d}JAR_FILE
+ENV JAR_FILE "target/${artifactId}-services.jar"
+ADD target/${artifactId}-services.jar $JAR_FILE
 

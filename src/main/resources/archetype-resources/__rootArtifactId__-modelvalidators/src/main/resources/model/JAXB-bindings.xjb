@@ -6,11 +6,11 @@
 
 	<!-- XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX
 
-		This file originates in the vetsapi-refdata-modelvalidators project
+		This file originates in the vetsapi-servicename-modelvalidators project
 		If you make changes to any other copy of this file (for example in the services project),
 		YOUR WORK WILL BE OVERWRITTEN AUTOMATICALLY BY MAVEN.
 
-		Make your changes in vetsapi-refdata-modelvalidators/src/main/resources/model/
+		Make your changes in vetsapi-servicename-modelvalidators/src/main/resources/model/
 
 		XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 
