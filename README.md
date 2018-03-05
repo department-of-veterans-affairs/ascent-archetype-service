@@ -55,20 +55,6 @@ Run the below commands. Replace the PathToApp with actual path.
     sed -i -- 's/__rootArtifactId__/wss-intenttofile/g' pom.xml
     rm pom.xml--
 
-    cd /PathToApp/wss-intenttofile/wss-intenttofile-services
-    sed -i -- 's/${artifactId}/wss-intenttofile-services/g' Dockerfile
-    rm Dockerfile--
-
-    cd /PathToApp/wss-intenttofile
-    sed -i -- 's/${artifactId}/wss-intenttofile-services/g' docker-compose.yml
-    sed -i -- 's/${artifactId}/wss-intenttofile-services/g' docker-compose.override.yml
-    rm docker-compose.yml--
-    rm docker-compose.override.yml--
-
-    cd /PathToApp/wss-intenttofile/wss-intenttofile-services/src/main/resources/
-    mv wss-intenttofile-services.properties wss-intenttofile-services.yml    
-
-
  ## Notes
 
  - The project can now be imported into an IDE of your choosing by creating a new project from existing sources. 
