@@ -1,11 +1,13 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
 version: '3.3'
 services: 
    ${artifactId}:
     build:
-        context: .
-    image: ascent/${artifactId}
+      context: ./${artifactId}
     environment:
-      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - SPRING_PROFILES_ACTIVE=${symbol_dollar}{SPRING_PROFILES_ACTIVE}
       - VAULT_ADDR=http://vault:8200
       - VAULT_TOKEN=vaultroot
 

@@ -2,8 +2,11 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-  
+
 <suite name="Default suite" verbose="1" parallel="classes" thread-count="1">
-  <test name="AscentRunnerTest">
-  </test>
+	<test name="AscentRunnerTest">
+		<classes>
+			<class name="gov.va.vetservices.${artifactNameLowerCase}.runner.VetServices${artifactName}Runner" />
+		</classes>
+	</test>
 </suite>

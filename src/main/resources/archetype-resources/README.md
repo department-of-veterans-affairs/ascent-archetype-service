@@ -1,24 +1,32 @@
-# What is this repository for?
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+${symbol_pound} What is this repository for?
 
-This repository contains the VetsAPI Reference Data microservice for benefits and compensation applications.
+This repository contains the VetServices ${artifactName} microservice for benefits and compensation applications.
 
-# Overview - VetsAPI Reference Data
+${symbol_pound} Overview - VetServices ${artifactName}
 
-The service operations offer lists of data from authoritative sources that can be used by applications to conform to the expectations of other benefits and compensation services.
+The service operations offer <span style="color:red;font-style:italic;">ADD PURPOSE OF THE API HERE</span>.
 
-## Operations offered
+${symbol_pound}${symbol_pound} Operations offered
 
+<span style="color:red;font-style:italic;">LIST API OPERATIONS HERE. 
+EXAMPLE:
+1. /api/${artifactNameLowerCase}/v1/OPERATION<br>
+  A description of what the OPERATION does.
+</span>
 
-# Service Consumers - How to use this API
+${symbol_pound} Service Consumers - How to use this API
 
-See the swagger for the microservice at http://{server.domain}:8762/api/serviceName/swagger-ui.html
+See the swagger for the microservice at http://{server.domain}:8762/api/${artifactNameLowerCase}/swagger-ui.html
 
-# Requests and Contributions
+${symbol_pound} Requests and Contributions
 
 If your team has requests for changes or additions to this service, please use the GitHub Issues tab.
 
 If your team would like to contribute to the project, please fork the repo to make your changes, and [Create a pull request from the fork](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
 
-## Contributors - How to set up
+${symbol_pound}${symbol_pound} Contributors - How to set up
 
 See the wiki tab.

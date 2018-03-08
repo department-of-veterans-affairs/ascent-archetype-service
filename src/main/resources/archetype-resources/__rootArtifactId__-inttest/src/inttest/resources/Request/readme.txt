@@ -1,6 +1,3 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 -----------------------------
 resources/Request
 -----------------------------
@@ -13,6 +10,6 @@ Example (for demo app, NoSSN scenario,
 --------------------------------------
 
 {
-"participantID": 0,
-"ssn": ""
+	"participantID": 0,
+	"ssn": ""
 }

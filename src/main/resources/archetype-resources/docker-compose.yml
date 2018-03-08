@@ -1,12 +1,13 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
 version: '3.3'
 services:
    ${artifactId}:
-    build:
-        context: .
     image: ascent/${artifactId}
     environment:
-      - VAULT_ADDR=${VAULT_ADDR}
-      - VAULT_TOKEN=${VAULT_TOKEN}
+      - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+      - VAULT_TOKEN=${symbol_dollar}{VAULT_TOKEN}
     logging:
       driver: fluentd
       options:

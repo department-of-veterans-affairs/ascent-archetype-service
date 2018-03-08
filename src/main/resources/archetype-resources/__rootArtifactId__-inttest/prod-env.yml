@@ -1,24 +1,27 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
 version: '3'
 services:
 
-  vetsapi-refdata:
-    image: ascent/vetsapi-refdata
+  ${rootArtifactId}:
+    image: ascent/${rootArtifactId}
     environment:
       - SPRING_PROFILES_ACTIVE=aws-ci
-      - VAULT_ADDR=${VAULT_ADDR}
-      - VAULT_TOKEN=${REFDATA_VAULT_TOKEN}
+      - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+      - VAULT_TOKEN=${symbol_dollar}{${artifactNameUpperCase}_VAULT_TOKEN}
     networks:
       - ascentnet
 
-####### Platform Services ########
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} Platform Services ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
 
   ascent-amqp:
     image: ascent/rabbitmq
     networks:
     - ascentnet
     environment:
-    - VAULT_ADDR=${VAULT_ADDR}
-    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+    - VAULT_TOKEN=${symbol_dollar}{PLATFORM_VAULT_TOKEN}
 
   ascent-discovery:
     image: ascent/ascent-discovery
@@ -27,8 +30,8 @@ services:
     - 8761
     environment:
     - SPRING_PROFILES_ACTIVE=aws-ci
-    - VAULT_ADDR=${VAULT_ADDR}
-    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+    - VAULT_TOKEN=${symbol_dollar}{PLATFORM_VAULT_TOKEN}
     - discovery.server.peer.name=ascent-discovery-peer
     networks:
     - ascentnet
@@ -38,8 +41,8 @@ services:
     hostname: ascent-discovery-peer
     environment:
     - SPRING_PROFILES_ACTIVE=aws-ci
-    - VAULT_ADDR=${VAULT_ADDR}
-    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+    - VAULT_TOKEN=${symbol_dollar}{PLATFORM_VAULT_TOKEN}
     - discovery.server.peer.name=ascent-discovery
     networks:
     - ascentnet
@@ -50,9 +53,9 @@ services:
     - 8760
     environment:
     - SPRING_PROFILES_ACTIVE=aws-ci
-    - VAULT_ADDR=https://${VAULT_HOST}:8200
-    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
-    - VAULT_HOST=${VAULT_HOST}
+    - VAULT_ADDR=https://${symbol_dollar}{VAULT_HOST}:8200
+    - VAULT_TOKEN=${symbol_dollar}{PLATFORM_VAULT_TOKEN}
+    - VAULT_HOST=${symbol_dollar}{VAULT_HOST}
     - VAULT_SCHEME=https
     networks:
     - ascentnet
@@ -63,8 +66,8 @@ services:
     - 8762
     environment:
     - SPRING_PROFILES_ACTIVE=aws-ci
-    - VAULT_ADDR=${VAULT_ADDR}
-    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+    - VAULT_TOKEN=${symbol_dollar}{PLATFORM_VAULT_TOKEN}
     networks:
     - ascentnet
   ascent-dashboard:
@@ -73,8 +76,8 @@ services:
     - 8763
     environment:
     - SPRING_PROFILES_ACTIVE=aws-ci
-    - VAULT_ADDR=${VAULT_ADDR}
-    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+    - VAULT_TOKEN=${symbol_dollar}{PLATFORM_VAULT_TOKEN}
     networks:
     - ascentnet
 
@@ -82,19 +85,19 @@ services:
     image: ascent/ascent-zipkin
     environment:
     - SPRING_PROFILES_ACTIVE=aws-ci
-    - VAULT_ADDR=${VAULT_ADDR}
-    - VAULT_TOKEN=${PLATFORM_VAULT_TOKEN}
+    - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+    - VAULT_TOKEN=${symbol_dollar}{PLATFORM_VAULT_TOKEN}
     networks:
     - ascentnet
 
-###### Cache Services ########
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} Cache Services ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
 
   redis-master:
     image: ascent/redis-sentinel
     environment:
       - START_COMMAND=sh /redis/redis-wrapper.sh
-      - VAULT_ADDR=${VAULT_ADDR}
-      - VAULT_TOKEN=${REDIS_VAULT_TOKEN}
+      - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+      - VAULT_TOKEN=${symbol_dollar}{REDIS_VAULT_TOKEN}
     networks:
       - ascentnet
     deploy:
@@ -106,8 +109,8 @@ services:
     image: ascent/redis-sentinel
     environment:
       - START_COMMAND=sh /redis/redis-wrapper.sh --slaveof redis-master 6379
-      - VAULT_ADDR=${VAULT_ADDR}
-      - VAULT_TOKEN=${REDIS_VAULT_TOKEN}
+      - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+      - VAULT_TOKEN=${symbol_dollar}{REDIS_VAULT_TOKEN}
     links:
       - redis-master
     networks:
@@ -117,12 +120,12 @@ services:
         constraints:
         - node.role == worker
       
-  # Instance 1
+  ${symbol_pound} Instance 1
   redis-sentinel:
     image: ascent/redis-sentinel
     environment:
-      - VAULT_ADDR=${VAULT_ADDR}
-      - VAULT_TOKEN=${REDIS_VAULT_TOKEN}
+      - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+      - VAULT_TOKEN=${symbol_dollar}{REDIS_VAULT_TOKEN}
     links:
       - redis-master
     networks:
@@ -132,12 +135,12 @@ services:
         constraints:
         - node.role == worker
       
-  # Instance 2
+  ${symbol_pound} Instance 2
   redis-sentinel2:
     image: ascent/redis-sentinel
     environment:
-      - VAULT_ADDR=${VAULT_ADDR}
-      - VAULT_TOKEN=${REDIS_VAULT_TOKEN}
+      - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+      - VAULT_TOKEN=${symbol_dollar}{REDIS_VAULT_TOKEN}
     links:
       - redis-master
     networks:
@@ -147,12 +150,12 @@ services:
         constraints:
         - node.role == worker
   
-  # Instance 3
+  ${symbol_pound} Instance 3
   redis-sentinel3:
     image: ascent/redis-sentinel
     environment:
-      - VAULT_ADDR=${VAULT_ADDR}
-      - VAULT_TOKEN=${REDIS_VAULT_TOKEN}
+      - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+      - VAULT_TOKEN=${symbol_dollar}{REDIS_VAULT_TOKEN}
     links:
       - redis-master
     networks:

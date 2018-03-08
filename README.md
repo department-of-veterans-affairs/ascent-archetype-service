@@ -1,30 +1,31 @@
-# Ascent Starter Archetype
+# Ascent Archetype for Services
 
-This is a starter project to create a microservice leveraging the Ascent Platform. 
+This is the project for the ascent-archetype-service artifact. This archetype can then be locally installed and used to create a microservice leveraging the Ascent Platform.
 
 ## Get Started
 
 Clone this repo to your local machine:
 
-`git clone https://github.com/department-of-veterans-affairs/ascent-starter-archetype.git`
+`git clone https://github.com/department-of-veterans-affairs/ascent-archetype-service.git`
 
 Then in the directory of your checkout run (make sure you're on the right branch):
 
 `mvn clean install`
 
-Navigate to another directory where you'd like to generate your new starter project. Replace all the values in < > in the below command then run it:
+Navigate to another directory where you'd like to generate your new services project. Replace all the values in < > in the below command then run it:
 
 
     mvn archetype:generate \
     -DinteractiveMode=false \
     -DarchetypeGroupId=gov.va.ascent \
-    -DarchetypeArtifactId=ascent-starter-archetype \
+    -DarchetypeArtifactId=ascent-archetype-service \
     -DarchetypeVersion=0.0.1-SNAPSHOT \
     -DgroupId=<InsertYourGroupID> \
     -DartifactId=<InsertYourArtifactID> \
     -Dversion=<InsertYourVersion> \
     -DartifactName=<InsertYourArtifactName> \
-    -DserviceName=<InsertYourServiceName> \
+    -DartifactNameLowerCase=<InsertYourArtfactNameInLowerCase> \
+    -DartifactNameUpperCase=<InsertYourArtfactNameInUpperCase> \
     -DservicePort=<InsertYourPort>  
 
 Here is the example:
@@ -32,32 +33,25 @@ Here is the example:
     mvn archetype:generate \
     -DinteractiveMode=false \
     -DarchetypeGroupId=gov.va.ascent \
-    -DarchetypeArtifactId=ascent-starter-archetype \
+    -DarchetypeArtifactId=ascent-archetype-service \
     -DarchetypeVersion=0.0.1-SNAPSHOT \
-    -DgroupId=gov.va.wss.intenttofile \
-    -DartifactId=wss-intenttofile \
+    -DgroupId=gov.va.vetservices.intenttofile \
+    -DartifactId=vetservices-intenttofile \
     -Dversion=0.0.1-SNAPSHOT \
-    -DartifactName=WssIntenttoFile \
-    -DserviceName=wss-intenttofile \
-    -DservicePort=8082
+    -DartifactName=IntentToFile \
+    -DartifactNameLowerCase=intenttofile \
+    -DartifactNameUpperCase=INTENTTOFILE \
+    -DservicePort=8080
 
 Run the below commands. Replace the PathToApp with actual path.
 
-    cd /PathToApp/wss-intenttofile/wss-intenttofile-inttest
-    sed -i -- 's/__rootArtifactId__/wss-intenttofile/g' pom.xml
-    rm pom.xml--
-
-    cd /PathToApp/wss-intenttofile/wss-intenttofile-modelvalidators
-    sed -i -- 's/__rootArtifactId__/wss-intenttofile/g' pom.xml
-    rm pom.xml--
-
-    cd /PathToApp/wss-intenttofile/wss-intenttofile-services
-    sed -i -- 's/__rootArtifactId__/wss-intenttofile/g' pom.xml
+    cd /PathToApp/vetservices-intenttofile/
+    sed -i -- 's/__rootArtifactId__/vetservices-intenttofile/g' pom.xml
     rm pom.xml--
 
  ## Notes
 
- - The project can now be imported into an IDE of your choosing by creating a new project from existing sources. 
+ - The project can now be imported into an IDE as an existing maven reactor project.
  - Running `mvn clean install` will build and generate a docker image for you
  - Running `start-all.sh` will launch the docker image created from the build
  - Running `stop-all.sh` will stop the docker image for your new project

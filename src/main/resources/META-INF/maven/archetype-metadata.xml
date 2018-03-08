@@ -1,232 +1,228 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" name="vetsapi-servicename-reactor"
-    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<archetype-descriptor
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+	xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	name="__rootArtifactId__-reactor" 
+>
+	<!-- ##########################################################################
+		This file meets custom requirements for VetServices Microservice projects.
+		In the course of project design requirements evolution, 
+		changes to standardized project structure, classes and configuration
+		*must* be reflected in the archetype. 
+		##########################################################################
+		
+		FileSets have rules:
+		- filtered -> true = process as velocity template, false = just copy
+		- packaged -> true = prepend package name specified in properties, false = copy to same package
+		- encoding -> character encoding for comparators and matchers - should always be "UTF-8"
+	-->
 
-  <requiredProperties>
-    <requiredProperty key="artifactIdCamelCase">
-      <defaultValue>${artifactId.replaceAll("^a|-a", "A").replaceAll("^b|-b", "B").replaceAll("^c|-c", "C").replaceAll("^d|-d", "D").replaceAll("^e|-e", "E").replaceAll("^f|-f", "F").replaceAll("^g|-g", "G").replaceAll("^h|-h", "H").replaceAll("^i|-i", "I").replaceAll("^j|-j", "J").replaceAll("^k|-k", "K").replaceAll("^l|-l", "L").replaceAll("^m|-m", "M").replaceAll("^n|-n", "N").replaceAll("^o|-o", "O").replaceAll("^p|-p", "P").replaceAll("^q|-q", "Q").replaceAll("^r|-r", "R").replaceAll("^s|-s", "S").replaceAll("^t|-t", "T").replaceAll("^u|-u", "U").replaceAll("^v|-v", "V").replaceAll("^w|-w", "W").replaceAll("^x|-x", "X").replaceAll("^y|-y", "Y").replaceAll("^z|-z", "Z")}</defaultValue>
-      </requiredProperty>
-    <requiredProperty key="artifactId">
-      <defaultValue>basic</defaultValue>
-      </requiredProperty>
-    <requiredProperty key="artifactName">
-      <defaultValue>default</defaultValue>
-      </requiredProperty>     
-    <requiredProperty key="servicePort">
-      <defaultValue>8057</defaultValue>
-      </requiredProperty>       
-    <requiredProperty key="serviceName">
-      <defaultValue>default</defaultValue>
-      </requiredProperty>          
-  </requiredProperties>
-  <fileSets>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory>__rootArtifactId__-perftest</directory>
-      <includes>
-        <include>**/*.txt</include>
-      </includes>
-    </fileSet>
-    <fileSet encoding="UTF-8">
-      <directory>.settings</directory>
-      <includes>
-        <include>**/*.prefs</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory></directory>
-      <includes>
-        <include>.project</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory></directory>
-      <includes>
-        <include>start-all.sh</include>
-        <include>docker-compose.override.yml</include>
-        <include>README.md</include>
-        <include>.gitignore</include>
-        <include>.env</include>
-        <include>Jenkinsfile</include>
-        <include>docker-compose.yml</include>
-        <include>stop-all.sh</include>
-      </includes>
-    </fileSet>
-  </fileSets>
-  <modules>
-    <module id="__rootArtifactId__-modelvalidators" dir="__rootArtifactId__-modelvalidators" name="__rootArtifactId__-modelvalidators">
-      <fileSets>
-        <fileSet filtered="true" packaged="true" encoding="UTF-8">
-          <directory>src/main/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/java</directory>
-          <includes>
-            <include>**/*.gitignore</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.properties</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.xjb</include>
-            <include>**/*.gitignore</include>
-            <include>**/*.xsd</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" packaged="true" encoding="UTF-8">
-          <directory>src/test/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/test/resources</directory>
-          <includes>
-            <include>**/*.txt</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>.settings</directory>
-          <includes>
-            <include>**/*.xml</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>.settings</directory>
-          <includes>
-            <include>**/*.prefs</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory></directory>
-          <includes>
-            <include>.classpath</include>
-            <include>.project</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory></directory>
-          <includes>
-            <include>.gitignore</include>
-          </includes>
-        </fileSet>
-      </fileSets>
-    </module>
-    <module id="__rootArtifactId__-services" dir="__rootArtifactId__-services" name="__rootArtifactId__-services">
-      <fileSets>
-        <fileSet filtered="true" packaged="true" encoding="UTF-8">
-          <directory>src/main/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/java-template</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>        
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.xml</include>
-            <include>**/*.properties</include>
-            <include>*services/*.yml</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.xjb</include>
-            <include>**/*.gitignore</include>
-            <include>**/*.xsd</include>
-            <include>**/*.yml</include>
-            <include>**/*.json</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" packaged="true" encoding="UTF-8">
-          <directory>src/test/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/test/resources</directory>
-          <includes>
-            <include>**/*.txt</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>.settings</directory>
-          <includes>
-            <include>**/*.xml</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>.settings</directory>
-          <includes>
-            <include>**/*.prefs</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory></directory>
-          <includes>
-            <include>.classpath</include>
-            <include>.project</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory></directory>
-          <includes>
-            <include>.factorypath</include>
-            <include>Dockerfile</include>
-            <include>.docker-jar-project-marker</include>
-            <include>.gitignore</include>
-          </includes>
-        </fileSet>
-      </fileSets>
-    </module>
-    <module id="__rootArtifactId__-inttest" dir="__rootArtifactId__-inttest" name="__rootArtifactId__-inttest">
-      <fileSets>
-        <fileSet filtered="true" packaged="true" encoding="UTF-8">
-          <directory>src/inttest/java</directory>
-          <includes>
-            <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/inttest/resources</directory>
-          <includes>
-            <include>**/*.txt</include>
-            <include>**/*.xml</include>
-            <include>**/*.properties</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory></directory>
-          <includes>
-            <include>**/*.</include>
-            <include>**/*.yml</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>src/inttest/resources</directory>
-          <includes>
-            <include>**/*.Response</include>
-            <include>**/*.feature</include>
-            <include>**/*.Request</include>
-          </includes>
-        </fileSet>
-      </fileSets>
-    </module>
-  </modules>
+	<!-- Example values for requiredProperties can be seen in the README.md -->
+	<requiredProperties>
+		<requiredProperty key="artifactId">
+			<defaultValue>basic</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="artifactName">
+			<defaultValue>default</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="artifactNameUpperCase">
+			<defaultValue>default</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="artifactNameLowerCase">
+			<defaultValue>default</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="servicePort">
+			<defaultValue>8057</defaultValue>
+		</requiredProperty>
+	</requiredProperties>
+	
+	<fileSets>
+		<!-- rules for the perftest directory -->
+		<fileSet filtered="true" encoding="UTF-8">
+			<directory>__rootArtifactId__-perftest</directory>
+			<includes>
+				<include>**/*.txt</include>
+			</includes>
+		</fileSet>
+		<!-- rules for files in the root directory -->
+		<fileSet filtered="true" encoding="UTF-8">
+			<directory></directory>
+			<includes>
+				<include>start-all.sh</include>
+				<include>docker-compose.override.yml</include>
+				<include>docker-compose.yml</include>
+				<include>Jenkinsfile</include>
+				<include>README.md</include>
+			</includes>
+		</fileSet>
+		<fileSet encoding="UTF-8">
+			<directory></directory>
+			<includes>
+				<include>**/*.env</include>
+				<include>**/*.gitignore</include>
+				<include>**/*.sh</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+	<modules>
+		<module id="__rootArtifactId__-modelvalidators" dir="__rootArtifactId__-modelvalidators" name="__rootArtifactId__-modelvalidators">
+			<fileSets>
+				<!-- rules for main java and subdirectories -->
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/main/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<fileSet encoding="UTF-8">
+					<directory>src/main/java</directory>
+					<includes>
+						<include>**/*.gitignore</include>
+					</includes>
+				</fileSet>
+				<!-- rules for main resources and subdirectories -->
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>src/main/resources</directory>
+					<includes>
+						<include>**/*.properties</include>
+						<include>**/*.xsd</include>
+					</includes>
+				</fileSet>
+				<fileSet encoding="UTF-8">
+					<directory>src/main/resources</directory>
+					<includes>
+						<include>**/*.xjb</include>
+						<include>**/*.gitignore</include>
+					</includes>
+				</fileSet>
+				<!-- rules for test java and subdirectories -->
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/test/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<!-- rules for test resources and subdirectories -->
+				<fileSet encoding="UTF-8">
+					<directory>src/test/resources</directory>
+					<includes>
+						<include>**/*.txt</include>
+					</includes>
+				</fileSet>
+				<!-- rules for files in the project root -->
+				<fileSet encoding="UTF-8">
+					<directory></directory>
+					<includes>
+						<include>**/*.gitignore</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="__rootArtifactId__" dir="__rootArtifactId__" name="__rootArtifactId__">
+			<fileSets>
+				<!-- rules for main java and subdirectories -->
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/main/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<!-- rules for main java-template and subdirectories -->
+				<fileSet filtered="true" encoding="UTF-8">
+					<!-- note that the generated path is declared by the __packageInPathFormat__ directory name -->
+					<directory>src/main/java-template</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<!-- rules for main resources and subdirectories -->
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>src/main/resources</directory>
+					<includes>
+						<include>**/*.xjb</include>
+						<include>**/*.yml</include>
+					</includes>
+				</fileSet>
+				<fileSet encoding="UTF-8">
+					<directory>src/main/resources</directory>
+					<includes>
+						<include>**/*.gitignore</include>
+						<include>**/*.json</include>
+						<include>**/*.properties</include>
+						<include>**/*.xml</include>
+						<include>**/*.xsd</include>
+					</includes>
+				</fileSet>
+				<!-- rules for test java and subdirectories -->
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/test/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<!-- rules for test resources and subdirectories -->
+				<fileSet encoding="UTF-8">
+					<directory>src/test/resources</directory>
+					<includes>
+						<include>**/*.txt</include>
+					</includes>
+				</fileSet>
+				<!-- rules for files in the project root -->
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory></directory>
+					<includes>
+						<include>Dockerfile</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory></directory>
+					<includes>
+						<include>**/*.docker-jar-project-marker</include>
+						<include>**/*.gitignore</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="__rootArtifactId__-inttest" dir="__rootArtifactId__-inttest" name="__rootArtifactId__-inttest">
+			<fileSets>
+				<!-- rules for inttest and subdirectories -->
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/inttest/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>src/inttest/resources</directory>
+					<includes>
+						<include>**/*.properties</include>
+						<include>**/*.xml</include>
+					</includes>
+				</fileSet>
+				<fileSet encoding="UTF-8">
+					<directory>src/inttest/resources</directory>
+					<includes>
+						<include>**/*.feature</include>
+						<include>**/*.Response</include>
+						<include>**/*.Request</include>
+						<include>**/*.txt</include>
+					</includes>
+				</fileSet>
+				<!-- rules for files in the project root -->
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory></directory>
+					<includes>
+						<include>prod-env.yml</include>
+					</includes>
+				</fileSet>
+				<fileSet encoding="UTF-8">
+					<directory></directory>
+					<includes>
+						<include>**/*.gitignore</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+	</modules>
 </archetype-descriptor>

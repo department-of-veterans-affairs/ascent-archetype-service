@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>${groupId}</groupId>
+		<artifactId>${rootArtifactId}-reactor</artifactId>
+		<version>${version}</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>${rootArtifactId}</artifactId>
+	<packaging>jar</packaging>
+	<name>${project.artifactId}</name>
+	<description>VetServices ${artifactName}</description>
+
+	<properties>
+		<!-- properties not inherited from the reactor POM -->
+	</properties>
+
+	<dependencies>
+		<!-- ${rootArtifactId} dependencies -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>${rootArtifactId}-modelvalidators</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	
+		<!-- Ascent Starters -->
+		<dependency>
+			<groupId>gov.va.ascent</groupId>
+			<artifactId>ascent-platform-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>gov.va.ascent</groupId>
+			<artifactId>ascent-platform-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>gov.va.ascent</groupId>
+			<artifactId>ascent-platform-starter-swagger</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>gov.va.ascent</groupId>
+			<artifactId>ascent-platform-starter-cache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>gov.va.ascent</groupId>
+			<artifactId>ascent-platform-starter-logger</artifactId>
+		</dependency>
+		
+		<!-- spring-boot dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-actuator-docs</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<!-- spring cloud dependencies -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.retry</groupId>
+			<artifactId>spring-retry</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>
+	    <!-- Spring-cloud sleuth dependency for generating instrumentation data for audit purposes -->
+	    <dependency> 
+	       <groupId>org.springframework.cloud</groupId>
+	       <artifactId>spring-cloud-sleuth-stream</artifactId>
+	    </dependency>
+	    <dependency> 
+	       <groupId>org.springframework.cloud</groupId>
+	       <artifactId>spring-cloud-starter-sleuth</artifactId>
+	    </dependency>	   
+	    <dependency> 
+	       <groupId>org.springframework.cloud</groupId>
+	       <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+	    </dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+		</dependency>
+
+		<!-- jackson is the jaxb/json marshaller implementation -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-base</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+		</dependency>
+
+		<!-- misc dependencies -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+
+		<plugins>
+		
+		
+			<!-- 
+			 * Meta-information about the web application.<br/><br/>
+			 * 
+			 * The templating maven plugin handles generating and copying files from a source to a given output directory, while filtering them. 
+			 * This plugin is useful to filter Java Source Code as there is a need to have things in the code replaced with properties values.
+			 * Generates class to store project.* properties in the ApplicationInfo.java placed under <sourceDirectory>
+			 * This mojo helps adding a filtered source folder in one go. This is useful as we want to use properties coming from the POM inside 
+			 * parts of our source code that requires real constants
+			 *
+			 * @see ApplicationInfo.java in src/java-template directory
+		    -->
+
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>templating-maven-plugin</artifactId>
+			    <version>1.0.0</version>
+			    <executions>
+			        <execution>
+			            <id>filtering-java-templates</id>
+			            <goals>
+			                <goal>filter-sources</goal>
+			            </goals>
+			            <configuration>
+			             <sourceDirectory>${basedir}/src/main/java-template</sourceDirectory>
+			          		<outputDirectory>${project.build.directory}/generated-sources/java-template</outputDirectory>
+			          	</configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+			<plugin>
+			      <groupId>org.codehaus.mojo</groupId>
+			      <artifactId>build-helper-maven-plugin</artifactId>
+			      <executions>
+			          <execution>
+			              <id>add-source</id>
+			              <phase>generate-sources</phase>
+			              <goals>
+			                  <goal>add-source</goal>
+			              </goals>
+			              <configuration>
+			                  <sources>
+			                      <source>${project.build.directory}/generated-sources/java-template</source>
+			                  </sources>
+			              </configuration>
+			          </execution>
+			      </executions>
+			  </plugin>
+
+			<!--
+				JAXB Custom Validator annnotation classes are generated from schema in the vetservices-modelvalidators project.
+				As part of generating the annotation classes, it is necessary to also generate the basic data model (transfer) objects.
+				 In this project, the same data model must be generated again, but this time including the custom validator annotations
+				 that were generated in the modelvalidators project.
+				 As a result, both projects must use the same XSDs and JAXB bindings. This plugin copies the files from modelvalidators
+				 into this project.
+			 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/src/main/resources/mvn-copied</outputDirectory>
+							<!-- copy resources from modelvalidator project -->
+							<resources>
+								<resource>
+									<directory>${basedir}/../${rootArtifactId}-modelvalidators/src/main/resources/model/</directory>
+									<filtering>false</filtering>
+									<includes>
+										<include>JAXB-bindings.xjb</include>
+										<include>v*/${artifactName}ApiModel.xsd</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>${basedir}/../${rootArtifactId}-modelvalidators/src/main/resources/mvn-copied/</directory>
+									<filtering>false</filtering>
+									<includes>
+										<include>xsd/ascent-framework-types.xsd</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!--
+				JAXB/XJC config to generate resource data model classes,
+				including jsr303 custom validator annotation classes from the modelvalidators project
+			-->
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>${maven.jaxb2.plugin.version}</version>
+				<configuration>
+					<schemaIncludes>
+						<schemaInclude>**/*.xsd</schemaInclude>
+					</schemaIncludes>
+					<bindingDirectory>${project.basedir}/src/main/resources</bindingDirectory>
+					<bindingIncludes>
+						<include>mvn-copied/JAXB-bindings.xjb</include>
+						<include>model/jsr303-bindings.xjb</include>
+					</bindingIncludes>
+					<strict>false</strict>
+					<extension>true</extension>
+					<args>
+						<arg>-no-header</arg>
+						<arg>-XReplacePrimitives</arg>
+						<arg>-XJsr303Annotations</arg>
+						<arg>-Xannotate</arg>
+					</args>
+					<plugins>
+						<!-- Enable JSR303 annotations.
+							Args used:
+							-XReplacePrimitives
+							-XJsr303Annotations
+						-->
+						<plugin>
+							<groupId>com.github.krasa</groupId>
+							<artifactId>krasa-jaxb-tools</artifactId>
+							<version>${krasa.jaxb.tools.version}</version>
+						</plugin>
+						<!-- Enable arbitrary annotations (e.g. JSR303 Custom Annotations).
+							Args used:
+							-Xannotate
+						-->
+						<plugin>
+							<groupId>org.jvnet.jaxb2_commons</groupId>
+							<artifactId>jaxb2-basics-annotate</artifactId>
+							<version>${jaxb2.basics.annotate.version}</version>
+						</plugin>
+					</plugins>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>${project.groupId}</groupId>
+						<artifactId>${rootArtifactId}-modelvalidators</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<!-- To introduce a new schema/model:
+						1. Copy/paste this entire execution
+						2. Give the new execution a new id, e.g. xjc-v2
+						3. Configure generatePackage for the version, e.g.  xxx.api.v2.transfer
+						4. Configure schemaDirectory for the version, e.g. xxx/model/v2
+					-->
+					<execution>
+						<id>xjc-v1</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<generatePackage>gov.va.vetservices.${artifactNameLowerCase}.api.v1.transfer</generatePackage>
+							<schemaDirectory>${project.basedir}/src/main/resources/mvn-copied/v1</schemaDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>gov.va.ascent.maven.plugins</groupId>
+				<artifactId>ascent-jsr303keygen-maven-plugin</artifactId>
+				<version>0.0.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>${project.groupId}</groupId>
+						<artifactId>${project.artifactId}</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<ascentJsr303KeyGenDescriptorFile>${project.basedir}/src/main/resources/AscentJsr303KeyGenDescriptor.json</ascentJsr303KeyGenDescriptorFile>
+					<ascentJsr303KeyGenOutputFile>${project.build.outputDirectory}/static/swagger/error-keys.html</ascentJsr303KeyGenOutputFile>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>keygen</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+		
+		<pluginManagement>
+	        	<plugins>
+	        		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+	        		<plugin>
+	        			<groupId>org.eclipse.m2e</groupId>
+	        			<artifactId>lifecycle-mapping</artifactId>
+	        			<version>1.0.0</version>
+	        			<configuration>
+	        				<lifecycleMappingMetadata>
+	        					<pluginExecutions>
+	        						<pluginExecution>
+	        							<pluginExecutionFilter>
+	        								<groupId>gov.va.ascent.maven.plugins</groupId>
+	        								<artifactId>ascent-jsr303keygen-maven-plugin</artifactId>
+	        								<versionRange>${ascent.jsr303keygen.maven.plugin.version}</versionRange>
+	        								<goals>
+	        									<goal>keygen</goal>
+	        								</goals>
+	        							</pluginExecutionFilter>
+	        							<action>
+	        								<ignore></ignore>
+	        							</action>
+	        						</pluginExecution>
+	        					</pluginExecutions>
+	        				</lifecycleMappingMetadata>
+	        			</configuration>
+	        		</plugin>
+	        	</plugins>
+        </pluginManagement>
+
+	</build>
+</project>

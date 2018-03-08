@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" jaxb:extensionBindingPrefixes="xjc" jaxb:version="2.0"
+<jaxb:bindings 
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+	jaxb:extensionBindingPrefixes="xjc" 
+	jaxb:version="2.0"
 	xs:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
 >
 
 	<!-- XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX
 
-		This file originates in the vetsapi-servicename-modelvalidators project
-		If you make changes to any other copy of this file (for example in the services project),
+		This file originates in the modelvalidators project
+		If you make changes to any other copy of this file (for example in the service project),
 		YOUR WORK WILL BE OVERWRITTEN AUTOMATICALLY BY MAVEN.
 
-		Make your changes in vetsapi-servicename-modelvalidators/src/main/resources/model/
+		Make your changes in modelvalidators/src/main/resources/model/
 
 		XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 
 	<jaxb:globalBindings fixedAttributeAsConstantProperty="true">
 		<xjc:superClass name="gov.va.ascent.framework.transfer.AbstractTransferObject" />
+		<xjc:simple/>
+		<!-- jaxb:serializable uid="1"/ [ <<< fails for some reason in this project] -->
 		<jaxb:javaType name="java.util.Date" xmlType="xs:dateTime"
 			parseMethod="gov.va.ascent.framework.transfer.jaxb.adapters.DateAdapter.parseDateTime" printMethod="gov.va.ascent.framework.transfer.jaxb.adapters.DateAdapter.printDateTime" />
 	</jaxb:globalBindings>

@@ -1,3 +1,6 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
 @Library('ascent') _
 
 microservicePipeline {
@@ -6,7 +9,7 @@ microservicePipeline {
     upstreamProjects = '../ascent-platform/development'
 
     dockerBuilds = [
-        "ascent/vetsapi-refdata": "vetsapi-refdata-services"
+        "ascent/${artifactId}": "${artifactId}"
     ]
 
     /******  Testing *******/
@@ -16,17 +19,17 @@ microservicePipeline {
     from the associated vault token role
     */
     vaultTokens = [
-        "REFDATA_VAULT_TOKEN": "refdata",
+        "${artifactNameUpperCase}_VAULT_TOKEN": "${artifactNameLowerCase}",
         "PLATFORM_VAULT_TOKEN": "ascent-platform",
         "REDIS_VAULT_TOKEN": "redis"
     ]
 
     //Test Environment Definition
-    testEnvironment = ['vetsapi-refdata-inttest/prod-env.yml']
+    testEnvironment = ['${artifactId}-inttest/prod-env.yml']
 
     //Name of the service to test
     serviceToTest = 'ascent-gateway'
 
     //Directory containing JSON files for Cucumber reports
-    cucumberReportDirectory = 'vetsapi-refdata-inttest/target'
+    cucumberReportDirectory = '${artifactId}-inttest/target'
 }
