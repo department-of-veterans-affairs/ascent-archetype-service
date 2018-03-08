@@ -4,6 +4,10 @@ This is the project for the ascent-archetype-service artifact. This archetype ca
 
 ## Get Started
 
+Learn about creating and using Maven Archetypes:<br/>
+* Great tutorial: <a href="http://geekofficedog.blogspot.be/2013/08/creating-maven-archetypes-tutorial.html">Creating maven archetypes</a>
+* Apache's incomplete documentation: <a href="http://maven.apache.org/archetype/maven-archetype-plugin/index.html">Maven Archetype Plugin</a>
+
 Clone this repo to your local machine:
 
 `git clone https://github.com/department-of-veterans-affairs/ascent-archetype-service.git`
@@ -16,6 +20,7 @@ Navigate to another directory where you'd like to generate your new services pro
 
 
     mvn archetype:generate \
+	-DarchetypeCatalog=local \
     -DinteractiveMode=false \
     -DarchetypeGroupId=gov.va.ascent \
     -DarchetypeArtifactId=ascent-archetype-service \
@@ -31,6 +36,7 @@ Navigate to another directory where you'd like to generate your new services pro
 Here is the example:
 
     mvn archetype:generate \
+	-DarchetypeCatalog=local \
     -DinteractiveMode=false \
     -DarchetypeGroupId=gov.va.ascent \
     -DarchetypeArtifactId=ascent-archetype-service \
