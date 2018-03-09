@@ -40,7 +40,7 @@ public class SampleCustomJSR303Validator
 	public final boolean isValid(final Object request,
 			final ConstraintValidatorContext context) {
 
-		return validateSomeInputValue(request.getSomeInputValue(), context);
+		return true; //validateSomeInputValue(request.getSomeInputValue(), context);
 
 	}
 

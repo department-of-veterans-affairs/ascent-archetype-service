@@ -14,8 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 
-import gov.va.vetservices.refdata.PartnerConfig;
-
 /**
  * The spring-boot application runtime class
  */

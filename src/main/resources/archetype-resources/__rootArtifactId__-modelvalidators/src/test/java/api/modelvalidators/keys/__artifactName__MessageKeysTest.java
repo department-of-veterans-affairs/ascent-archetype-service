@@ -5,10 +5,11 @@ package ${package}.api.modelvalidators.keys;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import gov.va.vetservices.refdata.api.modelvalidators.keys.ReferenceDataMessageKeys;
+import gov.va.vetservices.${artifactNameLowerCase}.api.modelvalidators.keys.${artifactName}MessageKeys;
 
 public class ${artifactName}MessageKeysTest {
 

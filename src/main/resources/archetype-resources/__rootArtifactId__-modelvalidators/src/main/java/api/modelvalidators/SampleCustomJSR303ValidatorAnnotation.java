@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.modelvalidators;
+package ${package}.api.modelvalidators;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

@@ -5,9 +5,6 @@ package ${package}.util;
 
 import org.springframework.cache.annotation.CachePut;
 
-import  $
-import ${package}.util.CacheUtil;{package}.util.ApplicationInfo;
-
 /**
  * <p>
  * Cache constants and utilities.

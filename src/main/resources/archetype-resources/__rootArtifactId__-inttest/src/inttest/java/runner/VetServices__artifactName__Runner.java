@@ -14,7 +14,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @RunWith(Cucumber.class)
 public class ${artifactName}Runner extends AbstractTestNGCucumberTests {
 
-	final Logger LOGGER = LoggerFactory.getLogger(${artifactName}Runner.class);
+	final Logger LOGGER = LoggerFactory.getLogger(VetServices${artifactName}Runner.class);
 
 	@BeforeSuite(alwaysRun = true)
 	public void setUp() throws Exception {

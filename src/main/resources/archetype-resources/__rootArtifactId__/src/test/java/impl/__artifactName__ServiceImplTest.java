@@ -39,6 +39,8 @@ import gov.va.ascent.starter.cache.autoconfigure.AscentCacheProperties;
 import gov.va.ascent.starter.cache.autoconfigure.AscentCacheProperties.RedisConfig;
 import gov.va.ascent.starter.cache.server.AscentEmbeddedRedisServer;
 
+import gov.va.vetservices.{$artifactNameLowerCase}.api.${artifactName}Service;
+
 @RunWith(SpringRunner.class)
 public class ${artifactName}ServiceImplTest {
 
@@ -73,7 +75,6 @@ public class ${artifactName}ServiceImplTest {
 	@Before
 	public void setUp() throws Exception {
 		when(messageSource.getMessage(anyString(), anyObject(), anyObject())).thenReturn("");
-		ReflectionTestUtils.setField(jsonUtils, "resourceLoader", resourceLoader);
 		ascentCacheProperties.setRedisConfig(new RedisConfig());
 		ascentEmbeddedRedisServer.startRedis();
 	}

@@ -8,9 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RestController;
+
 import gov.va.ascent.framework.swagger.SwaggerResponseMessages;
-import gov.va.vetservices.refdata.api.RefdataService;
-import gov.va.vetservices.refdata.rest.provider.RefdataResource;
+import gov.va.vetservices.${artifactNameLowerCase}.api.${artifactName}Service;
+
 
 @RestController
 /**

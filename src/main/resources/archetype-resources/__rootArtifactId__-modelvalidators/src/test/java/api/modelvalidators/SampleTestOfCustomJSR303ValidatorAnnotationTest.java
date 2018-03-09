@@ -17,9 +17,9 @@ import org.mockito.MockitoAnnotations;
 
 import gov.va.ascent.framework.util.Defense;
 
-public class RefdataStateCodeValidatorTest {
+public class SampleTestOfCustomJSR303ValidatorAnnotationTest {
 
-	private ${artifactName}SomeValidator validator;
+	private SampleCustomJSR303Validator validator;
 
 	@Mock
 	ConstraintValidatorContext constraintValidatorContext;

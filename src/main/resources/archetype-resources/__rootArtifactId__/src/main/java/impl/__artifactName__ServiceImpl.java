@@ -3,22 +3,21 @@
 #set( $symbol_escape = '\' )
 package ${package}.impl;
 
-import  $
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.CacheManager;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
-
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import gov.va.vetservices.${artifactNameLowerCase}.api.${artifactName}Service;
+import gov.va.vetservices.${artifactNameLowerCase}.util.HystrixCommandConstants;
+import gov.va.vetservices.${artifactNameLowerCase}.util.MessageUtils;
 
 
 /**

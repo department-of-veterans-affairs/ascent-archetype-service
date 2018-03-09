@@ -9,8 +9,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
+import gov.va.vetservices.${artifactNameLowerCase}.api.${artifactName}Service;
+import gov.va.vetservices.${artifactNameLowerCase}.impl.${artifactName}ServiceImpl;
+import gov.va.vetservices.intenttofile.util.MessageUtils;
+
 @Configuration
-public class RefdataAutoConfiguration {
+public class ${artifactName}AutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean
