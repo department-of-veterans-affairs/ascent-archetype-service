@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @RunWith(Cucumber.class)
-public class ${artifactName}Runner extends AbstractTestNGCucumberTests {
+public class VetServices${artifactName}Runner extends AbstractTestNGCucumberTests {
 
 	final Logger LOGGER = LoggerFactory.getLogger(VetServices${artifactName}Runner.class);
 

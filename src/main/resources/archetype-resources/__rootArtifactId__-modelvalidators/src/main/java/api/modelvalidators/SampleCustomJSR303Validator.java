@@ -62,8 +62,7 @@ public class SampleCustomJSR303Validator
 		if ((someInputValue == null) || "".equals(someInputValue) || SOME_DEFAULT_VALUE.equals(someInputValue)) {
 			return valid;
 		} else {
-			if ((someInputValue.length() > 2) || !Pattern.matches(SOME_PATTERN, someInputValue)
-					|| !StatesUtil.allStates().contains(someInputValue)) {
+			if ((someInputValue.length() > 2) || !Pattern.matches(SOME_PATTERN, someInputValue)) {
 				final ConstraintValidatorContext.ConstraintViolationBuilder builder = context
 						.buildConstraintViolationWithTemplate(""); // change to: ${artifactName}MessageKeys.SOME_MESSAGE_KEY_CONSTANT);
 				builder.addConstraintViolation();

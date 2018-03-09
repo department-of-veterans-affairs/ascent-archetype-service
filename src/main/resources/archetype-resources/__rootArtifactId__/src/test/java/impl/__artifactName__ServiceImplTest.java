@@ -39,7 +39,8 @@ import gov.va.ascent.starter.cache.autoconfigure.AscentCacheProperties;
 import gov.va.ascent.starter.cache.autoconfigure.AscentCacheProperties.RedisConfig;
 import gov.va.ascent.starter.cache.server.AscentEmbeddedRedisServer;
 
-import gov.va.vetservices.{$artifactNameLowerCase}.api.${artifactName}Service;
+import gov.va.vetservices.${artifactNameLowerCase}.api.${artifactName}Service;
+import gov.va.vetservices.intenttofile.util.MessageUtils;
 
 @RunWith(SpringRunner.class)
 public class ${artifactName}ServiceImplTest {
