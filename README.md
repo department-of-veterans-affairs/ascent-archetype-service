@@ -16,6 +16,26 @@ Then in the directory of your checkout run (make sure you're on the right branch
 
 `mvn clean install`
 
+The next step is to generate the new project. There are two ways to proceed: scripted or manual.
+
+## Scripted Generation
+
+Now copy <span style="color:blue">generate.sh</span> and <span style="color:blue">generate.properties</span> to the root directory where you would like to create your project directory. For example, ~/git
+
+Edit the generate.properties file with the desired value for each property. Instructional comments are provided in the properties file.
+
+In terminal, cd to the directory you copied the shell script to, and run the shell script:
+
+	$ cd ~/git
+	$ ./generate.sh
+
+Script notes:
+* Run <span style="color:blue">./generate.sh -h</span> to see script help.
+* The project directory you are creating cannot already exist where you execute the script.
+* Output from the script is displayed on screen. Detailed maven output is output to <span style="color:blue">generate.log</span>
+
+## Manual Generation
+
 Navigate to another directory where you'd like to generate your new services project. Replace all the values in < > in the below command then run it:
 
 
@@ -55,14 +75,14 @@ Run the below commands. Replace the PathToApp with actual path.
     sed -i -- 's/__rootArtifactId__/vetservices-intenttofile/g' pom.xml
     rm pom.xml--
 
- ## Notes
+## Notes
 
  - The project can now be imported into an IDE as an existing maven reactor project.
  - Running `mvn clean install` will build and generate a docker image for you
  - Running `start-all.sh` will launch the docker image created from the build
  - Running `stop-all.sh` will stop the docker image for your new project
 
- ## Quick Test
+## Quick Test
 
  Within your project navigate to the same directory as the Application.java class created for your project. Create a controller called `IndexController.java`:
 
