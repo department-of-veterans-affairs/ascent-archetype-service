@@ -1,0 +1,35 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+@Library('ascent') _
+
+microservicePipeline {
+    //Specify string of comma separated upstream projects that will
+    //trigger this build if successful
+    upstreamProjects = '../ascent-platform/development'
+
+    dockerBuilds = [
+        "ascent/${artifactId}": "${artifactId}"
+    ]
+
+    /******  Testing *******/
+
+    /*
+    Define a mapping of environment variables that will be populated with Vault token values
+    from the associated vault token role
+    */
+    vaultTokens = [
+        "${artifactNameUpperCase}_VAULT_TOKEN": "${artifactNameLowerCase}",
+        "PLATFORM_VAULT_TOKEN": "ascent-platform",
+        "REDIS_VAULT_TOKEN": "redis"
+    ]
+
+    //Test Environment Definition
+    testEnvironment = ['${artifactId}-inttest/prod-env.yml']
+
+    //Name of the service to test
+    serviceToTest = 'ascent-gateway'
+
+    //Directory containing JSON files for Cucumber reports
+    cucumberReportDirectory = '${artifactId}-inttest/target'
+}

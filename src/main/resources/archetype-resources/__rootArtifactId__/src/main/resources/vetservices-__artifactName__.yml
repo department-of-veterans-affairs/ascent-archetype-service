@@ -1,0 +1,199 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+${symbol_pound} Learn: https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html${symbol_pound}howto-use-yaml-for-external-properties
+
+server:
+  port: ${symbol_dollar}{${artifactNameLowerCase}.server.port:${servicePort}}
+info:
+  build:
+    version:  "@project.version@"
+    artifact: "@project.artifactId@"
+    name: "@project.name@"
+    description: "@project.description@"
+
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+${symbol_pound} REDIS Ascent Custom Cache Properties
+${symbol_pound} Default Expiration and For Each Bucket
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+ascent:
+  cache:
+    defaultExpires: 86400 ${symbol_pound} (Seconds)
+    expires:
+      ${symbol_pound}Cache Name: TTL (In Seconds)
+      refdataService: 1800
+
+  ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+  ${symbol_pound}Property configuration to enable or disable JWT security for service calls
+  ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+  security:
+    jwt:
+      enabled: true
+      filter-process-url: /v?/**
+  swagger:
+    title: VetServices ${artifactName} @project.version@ API Documentation
+    description: API Error Keys <a href="swagger/error-keys.html">error keys</a>
+    groupName: ${rootArtifactId}-@project.version@
+    version: ${symbol_dollar}{info.build.version}
+    securePaths: /${rootArtifactId}.*
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} 
+${symbol_pound}   Logging Level for packages
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+logging:
+  level:
+    gov:
+      va:
+        ascent: INFO
+    org:
+      springframework:
+        cloud.sleuth.log: INFO
+        cloud.sleuth: INFO
+        cloud.sleuth.instrument.web: INFO
+        security: INFO
+        ws: INFO
+        cache: INFO
+      apache:
+        http:
+          impl.client: INFO
+security:
+  user:
+    name: ${symbol_dollar}{ascent.security.username:admin}
+    password: ${symbol_dollar}{ascent.security.password:default}
+management:
+  ${symbol_pound} is security.enabled=false needed ???
+  security:
+    enabled: false
+  health:
+    rabbit:
+      enabled: false
+    redis:
+      enabled: false
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+${symbol_pound}sanitize properties for keys when using /configprops.
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+endpoints:
+  configprops:
+    keys-to-sanitize: 'enabled, password'
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+${symbol_pound}  hystrix command overrides
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+hystrix:
+  shareSecurityContext: true
+  command:
+    ${symbol_pound}DemoServiceAsyncReadCommand: 
+    ${symbol_pound}  execution:
+    ${symbol_pound}    isolation:
+    ${symbol_pound}      thread:
+            ${symbol_pound} This property sets the time in milliseconds after which the caller will observe a timeout and 
+            ${symbol_pound} walk away from the command execution. Hystrix marks the HystrixCommand as a TIMEOUT, and performs fallback 
+            ${symbol_pound} logic. Note that there is configuration for turning off timeouts per-command, if that is desired (see command.timeout.enabled).
+            ${symbol_pound} Default Value: 1000
+    ${symbol_pound}        timeoutInMilliseconds: 6000
+    default:
+      metrics:
+        rollingStats:
+          ${symbol_pound} This property sets the duration of the statistical rolling window, in milliseconds.
+          ${symbol_pound} This is how long Hystrix keeps metrics for the circuit breaker to use and for publishing
+          ${symbol_pound} Default Value: 10000
+          timeInMilliseconds: 20000
+        ${symbol_pound} This property sets the time to wait, in milliseconds, between allowing health snapshots to be taken that calculate
+        ${symbol_pound} success and error percentages and affect circuit breaker status.
+        ${symbol_pound} Default Value: 500
+        healthSnapshot:
+          intervalInMilliseconds: 1000
+      circuitBreaker:
+        ${symbol_pound} This property sets the amount of time, after tripping the circuit, to reject requests
+        ${symbol_pound} before allowing attempts again to determine if the circuit should again be closed.
+        ${symbol_pound} Default Value: 5000
+        sleepWindowInMilliseconds: 10000
+        ${symbol_pound} This property sets the minimum number of requests in a rolling window that will trip the circuit.
+        ${symbol_pound} Default Value: 20
+        requestVolumeThreshold: 4
+      execution:
+        isolation:
+          thread:
+            ${symbol_pound} This property sets the time in milliseconds after which the caller will observe a timeout and walk away from the
+            ${symbol_pound} command execution. Hystrix marks the HystrixCommand as a TIMEOUT, and performs fallback logic. Note that there
+            ${symbol_pound} is configuration for turning off timeouts per-command, if that is desired (see command.timeout.enabled).
+            ${symbol_pound} IMPORTANT NOTE: THIS TIMEOUT VALUE MUST BE GREATER THAN ANY SERVICE TIMEOUT TO AVOID ERRORS
+            ${symbol_pound} Default Value: 1000
+            timeoutInMilliseconds: 20000
+
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+${symbol_pound} Sleuth configuration
+${symbol_pound} To skip specific patterns being exported, added few more customs on top of default skip pattern
+${symbol_pound} see org.springframework.cloud.sleuth.instrument.web.TraceFilter.DEFAULT_SKIP_PATTERN
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+spring.sleuth.web.skipPattern: (/api/.*/webjars.*|/api/.*/v2/api-docs.*|/api/.*/swagger-resources.*|/api/.*/swagger-ui.*|/api-docs.*|/autoconfig|/configprops|/dump|/health|/info|/metrics.*|/mappings|/trace|/swagger.*|.*\\.png|.*\\.css|.*\\.js|.*\\.html|/favicon.ico|/hystrix.stream)
+${symbol_pound} comma separated list of matchers
+spring.sleuth.rxjava.schedulers.ignoredthreads: HystixMetricPoller,^RxComputation.*${symbol_dollar},^RxIoScheduler.*${symbol_dollar}
+
+---
+spring.profiles: default, local-int
+spring.profiles.include: remote_client_sims, embedded-redis
+ascent:
+  cache:
+    redis-config:
+      host: localhost
+      port: 6379
+  security:
+    jwt:
+      secret: vetsgov
+spring:
+  cache:
+    type: redis
+  cloud:
+    bus:
+      enabled: false
+  redis:
+    host: localhost
+    port: 6379
+  sleuth:
+    stream:
+      enabled: false
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+${symbol_pound} Include Implementation vs Simulator Profile 
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+---
+spring.profiles: docker-demo, aws-ci
+spring.profiles.include: remote_client_sims
+---
+spring.profiles: aws-stage, aws-prod
+spring.profiles.include: remote_client_impls
+---
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+${symbol_pound} Partner config properties
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+${symbol_pound} BGS partner data
+${symbol_pound} !!!!!!!!!!---  NOTE  ---!!!!!!!!!!!!!
+${symbol_pound} bgs.** properties need to be set differently
+${symbol_pound} depending on the spring profile.
+${symbol_pound} Need to review and adjust when real
+${symbol_pound} partner calls become possible
+${symbol_pound} !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+bgs:
+  url: http://localhost:58540/mockWebServicePortBinding
+  username: unitTestUsername
+  password: unitTestPassword
+  systemId: eBenefits
+  vaApplicationName: eBenefits
+  vaUCApplicationName: EBENEFITS
+  stationId: 281
+  default:
+    methodWarningThreshhold: 2500
+    readTimeout: 60000
+    connectionTimeout: 60000
+
+${symbol_pound} the following is the typical properties for a partner
+${symbol_pound}vetservices-partner-nameofpartner:
+${symbol_pound}  ws:
+${symbol_pound}    client:
+${symbol_pound}      endpoint: ${symbol_dollar}{bgs.url}/PATH/soapServiceName?WSDL
+${symbol_pound}      username: ${symbol_dollar}{bgs.username}
+${symbol_pound}      password: ${symbol_dollar}{bgs.password}
+${symbol_pound}      vaApplicationName: ${symbol_dollar}{bgs.vaApplicationName}
+${symbol_pound}      logValidation: false
+${symbol_pound}      readTimeout: ${symbol_dollar}{bgs.default.readTimeout}
+${symbol_pound}      connectionTimeout: ${symbol_dollar}{bgs.default.connectionTimeout}
+${symbol_pound}      methodWarningThreshhold: ${symbol_dollar}{bgs.default.methodWarningThreshhold}
+---

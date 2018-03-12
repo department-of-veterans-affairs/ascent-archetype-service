@@ -1,0 +1,22 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+version: '3.3'
+services:
+   ${artifactId}:
+    image: ascent/${artifactId}
+    environment:
+      - VAULT_ADDR=${symbol_dollar}{VAULT_ADDR}
+      - VAULT_TOKEN=${symbol_dollar}{VAULT_TOKEN}
+    logging:
+      driver: fluentd
+      options:
+        fluentd-async-connect: "true"
+        fluentd-max-retries: "10"
+        fluentd-retry-wait: "30s"
+    networks:
+      - ascentnet
+networks: 
+ ascentnet: 
+    external:
+      name: ascent_ascentnet

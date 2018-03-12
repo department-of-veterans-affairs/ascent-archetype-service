@@ -1,0 +1,55 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:afw="http://www.va.gov/ascent/framework/schema/v1"
+	xmlns="http://gov.va/vetservices/refdata/model/v1" 
+	targetNamespace="http://gov.va/vetservices/${artifactNameLowerCase}/model/v1"
+>
+
+	<!-- XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX READ-ME XXXXX
+
+		This file originates in the modelvalidators project
+		If you make changes to any other copy of this file (for example in the service project),
+		YOUR WORK WILL BE OVERWRITTEN AUTOMATICALLY BY MAVEN.
+
+		Make your changes in modelvalidators/src/main/resources/model/
+
+		XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+	<xs:import schemaLocation="../../mvn-copied/xsd/ascent-framework-types.xsd" namespace="http://www.va.gov/ascent/framework/schema/v1" />
+
+	<!--************************************************************************************************************************************
+		REQUEST+RESPONSE OBJECTS
+		************************************************************************************************************************************* -->
+
+	<!-- Example of a Response object:
+	<xs:element name="disabilityResponse" type="DisabilityResponse" />
+	<xs:complexType name="DisabilityResponse">
+		<xs:complexContent>
+			<xs:extension base="afw:serviceResponse">
+				<xs:sequence>
+					<xs:element name="disability" type="Disability" minOccurs="0" maxOccurs="1500" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	-->
+
+	<!--************************************************************************************************************************************
+		MODEL OBJECTS
+		************************************************************************************************************************************* -->
+
+	<!-- Example of a model object used by the Response object:
+	<xs:complexType name="Disability">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="endDate" type="xs:dateTime" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	-->
+
+</xs:schema>
+

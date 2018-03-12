@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>${groupId}</groupId>
+		<artifactId>${rootArtifactId}-reactor</artifactId>
+		<version>${version}</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>${rootArtifactId}-inttest</artifactId>
+	<packaging>jar</packaging>
+	<name>${rootArtifactId}-inttest</name>
+	<description>VetServices ${artifactName} Integration Test Suite</description>
+
+	<build>
+		<plugins>
+			<!-- disable spring-boot plugins, otherwise tries to make this module executable -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<!-- integration testing dependencies -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
