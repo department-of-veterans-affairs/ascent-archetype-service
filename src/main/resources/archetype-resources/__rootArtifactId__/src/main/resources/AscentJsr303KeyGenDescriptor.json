@@ -1,0 +1,7 @@
+{
+  "AscentJsr303KeyGenDescriptor" : {
+  	"customMessageBundles" : ["messages"],
+    "operationDescriptors" : [ 
+    ]
+  }
+}

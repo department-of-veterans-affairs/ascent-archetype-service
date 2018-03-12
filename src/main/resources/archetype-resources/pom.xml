@@ -1,150 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
 
-    <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>gov.va.ascent</groupId>
+		<artifactId>ascent-platform-parent</artifactId>
+		<version>0.0.4-SNAPSHOT</version>
+		<!-- Force artifact resolution from repository -->
+		<relativePath />
+	</parent>
 
-    <parent>
-        <groupId>gov.va.ascent</groupId>
-        <artifactId>ascent-platform-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <!-- Force artifact resolution from repository -->
-        <relativePath />
-    </parent>
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}-reactor</artifactId>
+	<packaging>pom</packaging>
+	<version>${version}</version>
+	<name>${project.artifactId}</name>
+	<description>Reactor and Parent POM for VetService ${artifactName} projects</description>
 
-    <artifactId>${artifactId}</artifactId>
-    <groupId>${groupId}</groupId>
-    <version>${version}</version>
-    <packaging>jar</packaging>
+	<modules>
+		<module>${artifactId}-modelvalidators</module>
+		<module>${artifactId}</module>
+		<module>${artifactId}-inttest</module>
+	</modules>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <!-- Docker properties to add min and max memory for spring boot jar start up -->
-        <docker.java.opts.ms>-Xms64m</docker.java.opts.ms>
-        <docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
-        <ascent.version>0.0.1-SNAPSHOT</ascent.version>
-    </properties>
+	<properties>
+	
+		<!-- vetservices-refdata properties -->
+		<ascent.jsr303keygen.maven.plugin.version>[0.0.1,)</ascent.jsr303keygen.maven.plugin.version>
+		
+		<!-- for Ascent platform versions, see DependencyManagement section below -->
+		
+		<!-- Docker properties to add min and max memory for spring boot jar start up -->
+		<docker.java.opts.ms>-Xms64m</docker.java.opts.ms>
+		<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
+		
+	</properties>
 
-    <dependencies>
-        <!-- Ascent Starters -->
-        <dependency>
+	<!-- dependencies inherited by all projects -->
+	<dependencies>
+		<dependency>
 			<groupId>gov.va.ascent</groupId>
-			<artifactId>ascent-platform-starter</artifactId>
+			<artifactId>ascent-test-framework</artifactId>
+			<scope>test</scope>
+			<version>${ascent.test.framework.version}</version>
 		</dependency>
-        <dependency>
-            <groupId>gov.va.ascent</groupId>
-            <artifactId>ascent-platform-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>gov.va.ascent</groupId>
-            <artifactId>ascent-platform-starter-swagger</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>gov.va.ascent</groupId>
-            <artifactId>ascent-platform-starter-cache</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>gov.va.ascent</groupId>
-            <artifactId>ascent-platform-starter-logger</artifactId>
-        </dependency>
-        <!-- spring-boot dependencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-actuator-docs</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
-        <!-- spring cloud dependencies -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.retry</groupId>
-            <artifactId>spring-retry</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-hystrix</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-        </dependency>
-        <!-- Spring-cloud sleuth dependency for generating instrumentation data for audit purposes -->
-	    <dependency> 
-	       <groupId>org.springframework.cloud</groupId>
-	       <artifactId>spring-cloud-sleuth-stream</artifactId>
-	    </dependency>
-	    <dependency> 
-	       <groupId>org.springframework.cloud</groupId>
-	       <artifactId>spring-cloud-starter-sleuth</artifactId>
-	    </dependency>	   
-	    <dependency> 
-	       <groupId>org.springframework.cloud</groupId>
-	       <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
-	    </dependency>
-        <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-base</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-json-provider</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-jaxb-annotations</artifactId>
-        </dependency>
-
-        <!-- misc dependencies -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-
-        <!-- test dependencies -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
+		<!-- partner jar dependencies -->
+		<dependency>
+			<groupId>gov.va.vetservices.partner</groupId>
+			<artifactId>vetservices-partner-standarddata</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>gov.va.vetservices.partner</groupId>
+			<artifactId>vetservices-partner-shareddata</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>gov.va.vetservices.partner</groupId>
+			<artifactId>vetservices-partner-treatmentfacility</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+ 	</dependencies>
 </project>

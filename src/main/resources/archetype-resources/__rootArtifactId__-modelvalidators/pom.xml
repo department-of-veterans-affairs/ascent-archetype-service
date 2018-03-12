@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>${groupId}</groupId>
+		<artifactId>${rootArtifactId}-reactor</artifactId>
+		<version>${version}</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>${rootArtifactId}-modelvalidators</artifactId>
+	<packaging>jar</packaging>
+	<name>${project.artifactId}</name>
+	<description>${artifactName} JSR303 Custom Model Validators</description>
+
+	<properties>
+		<!-- properties not inherited from the reactor POM -->
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>gov.va.ascent</groupId>
+			<artifactId>ascent-platform-starter</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- disable spring-boot plugins, otherwise tries to make this module executable -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<!-- Since JARs cannot be referenced directly as a schemaLocation,
+				we have to unpack the framework schema from the ascent-framework JAR.
+				This allows executions in the maven-jaxb2-plugin to function
+				without regenerating the classes declared in the framework XSD.
+				- ascent-framework classes are bound in JAXB-bindings.xjb
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpackXSDs</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>gov.va.ascent</groupId>
+									<artifactId>ascent-framework</artifactId>
+									<outputDirectory>${project.basedir}/src/main/resources/mvn-copied</outputDirectory>
+									<includes>xsd/ascent-framework-types.xsd</includes>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!--
+				JAXB/XJC config to generate resource data model classes,
+				so that the jsr303 custom validator annotation classes can compile
+			-->
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>${maven.jaxb2.plugin.version}</version>
+				<configuration>
+					<schemaIncludes>
+						<schemaInclude>**/*.xsd</schemaInclude>
+					</schemaIncludes>
+					<bindingDirectory>${project.basedir}/src/main/resources/model/</bindingDirectory>
+					<bindingIncludes>
+						<include>JAXB-bindings.xjb</include>
+					</bindingIncludes>
+					<strict>false</strict>
+					<extension>true</extension>
+					<args>
+						<arg>-no-header</arg>
+						<arg>-XReplacePrimitives</arg>
+						<arg>-XJsr303Annotations</arg>
+						<arg>-Xannotate</arg>
+					</args>
+					<plugins>
+						<!-- Enable JSR303 annotations.
+							Args used:
+							-XReplacePrimitives
+							-XJsr303Annotations
+						-->
+						<plugin>
+							<groupId>com.github.krasa</groupId>
+							<artifactId>krasa-jaxb-tools</artifactId>
+							<version>${krasa.jaxb.tools.version}</version>
+						</plugin>
+						<!-- Enable arbitrary annotations (e.g. JSR303 Custom Annotations).
+							Args used:
+							-Xannotate
+						-->
+						<plugin>
+							<groupId>org.jvnet.jaxb2_commons</groupId>
+							<artifactId>jaxb2-basics-annotate</artifactId>
+							<version>${jaxb2.basics.annotate.version}</version>
+						</plugin>
+					</plugins>
+				</configuration>
+				<executions>
+					<!-- To introduce a new schema/model:
+						1. Copy/paste this entire execution
+						2. Give the new execution a new id, e.g. xjc-v2
+						3. Configure generatePackage for the version, e.g. xxx.api.v2.transfer
+						4. Configure schemaDirectory for the version, e.g. xxx/model/v2
+					-->
+					<execution>
+						<id>xjc-v1</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<generatePackage>gov.va.vetservices.${artifactNameLowerCase}.api.v1.transfer</generatePackage>
+							<bindingDirectory>${project.basedir}/src/main/resources/model</bindingDirectory>
+							<schemaDirectory>${project.basedir}/src/main/resources/model/v1</schemaDirectory>
+							<cleanPackageDirectories>true</cleanPackageDirectories>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<!-- exclude all transfer objects regardless of version -->
+					<excludes>
+						<exclude>**/v*/transfer/*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,3 +1,6 @@
+### vetservices-refdata ###
+vetservices-refdata*.log
+
 ### Maven ###
 target/
 
@@ -26,12 +29,20 @@ dist/
 nbdist/
 .nb-gradle/
 
-### Log Files ###
-**/*.log
-
 ### Eclipse ###
 .metadata
 
-### Visual Studio Code ###
-.settings
-.vscode
+### DB4O ###
+**/*.db4o
+
+### SoupUI ###
+**/soapui*.log
+
+### Ignore int test log file ###
+**/rest*.log
+# ignore logs put in the project root
+/*.log
+
+### Platform ###
+.docker-jar-project-marker
+/bin/

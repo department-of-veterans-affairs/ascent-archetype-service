@@ -1,0 +1,93 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+
+spring:
+  application:
+    name: "@project.name@"
+  config:
+    name: "@project.name@"
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: ascent-config
+      failFast: true
+      label: development
+      username: ${symbol_dollar}{ascent.security.username:admin}
+      password: ${symbol_dollar}{ascent.security.password:default}
+      retry:
+        initialInterval: 10000
+        maxInterval: 300000
+        multiplier: 1.2
+        maxAttempts: 10
+      token: ${symbol_dollar}{VAULT_TOKEN:vaultroot}
+eureka:
+  client:
+    ${symbol_pound}false by default in local dev mode
+    enabled: false
+  instance:
+    metadata-map:
+      version:  "@project.version@"
+      artifact: "@project.artifactId@"
+      name: "@project.name@"
+      description: "@project.description@"
+      appType: REST-API
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    config:
+      discovery:
+        enabled: false
+      failFast: false
+
+---
+spring:
+  profiles: local-int
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://${symbol_dollar}{discovery.username:eureka}:${symbol_dollar}{discovery.password:default}@localhost:${symbol_dollar}{discovery.server.port:8761}/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 10
+
+
+---
+
+spring:
+  profiles: docker-demo
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://${symbol_dollar}{discovery.username:eureka}:${symbol_dollar}{discovery.password:default}@ascent-discovery:${symbol_dollar}{discovery.server.port:8761}/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 20
+    hostname: "${symbol_dollar}{INSTANCE_HOST_NAME:@project.artifactId@}"
+    preferIpAddress: false
+---
+
+spring:
+    profiles: aws-ci, aws-dev, aws-stage, aws-prod
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://${symbol_dollar}{discovery.username:eureka}:${symbol_dollar}{discovery.password:default}@${symbol_dollar}{discovery.server.peer1.name:ascent-discovery}:${symbol_dollar}{discovery.server.port:8761}/eureka/,http://${symbol_dollar}{discovery.username:eureka}:${symbol_dollar}{discovery.password:default}@${symbol_dollar}{discovery.server.peer2.name:ascent-discovery}:${symbol_dollar}{discovery.server.port:8761}/eureka/
+    preferSameZoneEureka: true
+  instance:
+    hostname: "${symbol_dollar}{INSTANCE_HOST_NAME:@project.artifactId@}"
+    preferIpAddress: false
+---
+
+spring:
+    profiles: aws-stage, aws-prod
+    cloud:
+      config:
+        label: master

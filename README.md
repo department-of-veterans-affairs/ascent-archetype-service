@@ -1,38 +1,90 @@
-# Ascent Starter Archetype
+# Ascent Archetype for Services
 
-This is a starter project to create a microservice leveraging the Ascent Platform. 
+This is the project for the ascent-archetype-service artifact. This archetype can then be locally installed and used to create a microservice leveraging the Ascent Platform.
 
 ## Get Started
 
+Learn about creating and using Maven Archetypes:<br/>
+* Great tutorial: <a href="http://geekofficedog.blogspot.be/2013/08/creating-maven-archetypes-tutorial.html">Creating maven archetypes</a>
+* Apache's incomplete documentation: <a href="http://maven.apache.org/archetype/maven-archetype-plugin/index.html">Maven Archetype Plugin</a>
+
 Clone this repo to your local machine:
 
-`git clone https://github.com/department-of-veterans-affairs/ascent-starter-archetype.git`
+`git clone https://github.com/department-of-veterans-affairs/ascent-archetype-service.git`
 
 Then in the directory of your checkout run (make sure you're on the right branch):
 
 `mvn clean install`
 
-Navigate to another directory where you'd like to generate your new starter project. Replace all the values in < > in the below command then run it:
+The next step is to generate the new project. There are two ways to proceed: scripted or manual.
+
+## Scripted Generation
+
+Now copy both <span style="color:blue">gensvc.sh</span> and <span style="color:blue">gensvc.properties</span> to the root directory where you would like to create your project directory. For example, ~/git
+
+Edit the <span style="color:blue">gensvc.properties</span> file with the desired value for each property. Instructional comments are provided in the properties file.
+
+In terminal, cd to the directory you copied the shell script to, and run the shell script (you may need to make the file executable with chmod):
+
+	$ cd ~/git             # change to the base/root directory
+	$ chmod +x gensvc.sh   # make the script executable
+	$ ./gensvc.sh          # run the script with gensvc.properties
+	$ less gensvc.log      # view the maven logs
+
+Script notes:
+* Run <span style="color:blue">./gensvc.sh -h</span> to see script help.
+* The project directory you are creating cannot already exist where you execute the script.
+* Output from the script is displayed on screen. Detailed maven output is output to <span style="color:blue">gensvc.log</span>
+
+## Manual Generation
+
+Navigate to another directory where you'd like to generate your new services project. Replace all the values in < > in the below command then run it:
+
 
     mvn archetype:generate \
+	-DarchetypeCatalog=local \
     -DinteractiveMode=false \
     -DarchetypeGroupId=gov.va.ascent \
-    -DarchetypeArtifactId=ascent-starter-archetype \
+    -DarchetypeArtifactId=ascent-archetype-service \
     -DarchetypeVersion=0.0.1-SNAPSHOT \
     -DgroupId=<InsertYourGroupID> \
     -DartifactId=<InsertYourArtifactID> \
-    -DserviceName="<InsertHumanReadableServiceName>" \
     -Dversion=<InsertYourVersion> \
-    -DservicePort=<InsertYourPort>
+    -DartifactName=<InsertYourArtifactName> \
+    -DartifactNameLowerCase=<InsertYourArtfactNameInLowerCase> \
+    -DartifactNameUpperCase=<InsertYourArtfactNameInUpperCase> \
+    -DservicePort=<InsertYourPort>  
 
- ## Notes
+Here is the example:
 
- - The project can now be imported into an IDE of your choosing by creating a new project from existing sources. 
+    mvn archetype:generate \
+	-DarchetypeCatalog=local \
+    -DinteractiveMode=false \
+    -DarchetypeGroupId=gov.va.ascent \
+    -DarchetypeArtifactId=ascent-archetype-service \
+    -DarchetypeVersion=0.0.1-SNAPSHOT \
+    -DgroupId=gov.va.vetservices.intenttofile \
+    -DartifactId=vetservices-intenttofile \
+    -Dversion=0.0.1-SNAPSHOT \
+    -DartifactName=IntentToFile \
+    -DartifactNameLowerCase=intenttofile \
+    -DartifactNameUpperCase=INTENTTOFILE \
+    -DservicePort=8080
+
+Run the below commands. Replace the PathToApp with actual path.
+
+    cd /PathToApp/vetservices-intenttofile/
+    sed -i -- 's/__rootArtifactId__/vetservices-intenttofile/g' pom.xml
+    rm pom.xml--
+
+## Notes
+
+ - The project can now be imported into an IDE as an existing maven reactor project.
  - Running `mvn clean install` will build and generate a docker image for you
  - Running `start-all.sh` will launch the docker image created from the build
  - Running `stop-all.sh` will stop the docker image for your new project
 
- ## Quick Test
+## Quick Test
 
  Within your project navigate to the same directory as the Application.java class created for your project. Create a controller called `IndexController.java`:
 

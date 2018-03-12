@@ -1,62 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>gov.va.ascent</groupId>
-    <artifactId>ascent-starter-archetype</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>maven-archetype</packaging>
-    <name>ascent-starter-maven-archetype</name>
-    <description>Maven archetype for Ascent Platform Starter Projects</description>
+	<groupId>gov.va.ascent</groupId>
+	<artifactId>ascent-archetype-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>maven-archetype</packaging>
+	<name>${project.artifactId}</name>
+	<description>Maven archetype for Ascent VetServices projects</description>
 
-    <repositories>
-        <repository>
-            <id>vets</id>
-            <name>Vets.gov Nexus Repository</name>
-            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>vets</id>
-            <name>Vets.gov Nexus Repository</name>
-            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
-        </pluginRepository>
-    </pluginRepositories>
-    <distributionManagement>
-        <repository>
-            <id>vets.release</id>
-            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>vets.snapshot</id>
-            <url>http://csraciapp1.evss.srarad.com:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
+	<properties>
+		<archetype-packaging.version>3.0.1</archetype-packaging.version>
+		<maven-archetype-plugin.version>3.0.1</maven-archetype-plugin.version>
+		<repository.base.url>http://csraciapp1.evss.srarad.com:8081/nexus/content</repository.base.url>
+	</properties>
 
-    <build>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.archetype</groupId>
-                <artifactId>archetype-packaging</artifactId>
-                <version>2.2</version>
-            </extension>
-        </extensions>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-archetype-plugin</artifactId>
-                    <version>2.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.0.2</version>
-                    <configuration>
-                        <addDefaultExcludes>false</addDefaultExcludes>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.archetype</groupId>
+				<artifactId>archetype-packaging</artifactId>
+				<version>${archetype-packaging.version}</version>
+			</extension>
+		</extensions>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>${maven-archetype-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>vets</id>
+			<name>Vets.gov Nexus Repository</name>
+			<url>${repository.base.url}/groups/public</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>vets</id>
+			<name>Vets.gov Nexus Repository</name>
+			<url>${repository.base.url}/groups/public</url>
+		</pluginRepository>
+	</pluginRepositories>
+	<distributionManagement>
+		<repository>
+			<id>vets.release</id>
+			<url>${repository.base.url}/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>vets.snapshot</id>
+			<url>${repository.base.url}/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
