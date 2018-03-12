@@ -20,19 +20,21 @@ The next step is to generate the new project. There are two ways to proceed: scr
 
 ## Scripted Generation
 
-Now copy <span style="color:blue">generate.sh</span> and <span style="color:blue">generate.properties</span> to the root directory where you would like to create your project directory. For example, ~/git
+Now copy both <span style="color:blue">gensvc.sh</span> and <span style="color:blue">gensvc.properties</span> to the root directory where you would like to create your project directory. For example, ~/git
 
-Edit the generate.properties file with the desired value for each property. Instructional comments are provided in the properties file.
+Edit the <span style="color:blue">gensvc.properties</span> file with the desired value for each property. Instructional comments are provided in the properties file.
 
-In terminal, cd to the directory you copied the shell script to, and run the shell script:
+In terminal, cd to the directory you copied the shell script to, and run the shell script (you may need to make the file executable with chmod):
 
-	$ cd ~/git
-	$ ./generate.sh
+	$ cd ~/git             # change to the base/root directory
+	$ chmod +x gensvc.sh   # make the script executable
+	$ ./gensvc.sh          # run the script with gensvc.properties
+	$ less gensvc.log      # view the maven logs
 
 Script notes:
-* Run <span style="color:blue">./generate.sh -h</span> to see script help.
+* Run <span style="color:blue">./gensvc.sh -h</span> to see script help.
 * The project directory you are creating cannot already exist where you execute the script.
-* Output from the script is displayed on screen. Detailed maven output is output to <span style="color:blue">generate.log</span>
+* Output from the script is displayed on screen. Detailed maven output is output to <span style="color:blue">gensvc.log</span>
 
 ## Manual Generation
 

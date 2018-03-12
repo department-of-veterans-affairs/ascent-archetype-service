@@ -3,10 +3,11 @@
 # useful variables
 cwd=`pwd`
 thisScript="$0"
+thisFileName=$(echo "./gensvc.sh" | rev | cut -d'/' -f1 | rev | cut -d'.' -f1)
 args="$@"
 # script variables
-propertiesFile="generate.properties"
-generateLog="generate.log"
+propertiesFile="$thisFileName.properties"
+generateLog="$thisFileName.log"
 # properties
 # not required in properties file
 archetypeCatalog="local"
@@ -162,15 +163,15 @@ function get_args() {
 ## function to populate property vars from $propertiesFile ##
 ## scope: private (internal calls only)                    ##
 function read_properties() {
-  cd $cwd
+  cd "$cwd"
 
   if [ ! -f "$propertiesFile" ]; then
     echo " *** ERROR File \"$propertiesFile\" is missing. Cannot generate the project." >&2
     echo " *** ERROR File \"$propertiesFile\" is missing. Cannot generate the project." >> $cwd/$generateLog 2>&1
   else
     echo "" >&2
-    echo "Read project generation properties declared in $propertiesFile" >&2
-    echo "Read project generation properties declared in $propertiesFile" >> $cwd/$generateLog 2>&1
+    echo "Reading project properties declared in $propertiesFile" >&2
+    echo "Read project properties declared in $propertiesFile" >> $cwd/$generateLog 2>&1
 
     # set up to parse property lines
     OIFS=$IFS
@@ -207,8 +208,8 @@ function read_properties() {
 ## function to validate property vars from $propertiesFile ##
 ## scope: private (internal calls only)                    ##
 function validate_properties() {
-  echo "Validating project generation properties declared in $propertiesFile" >&2
-  echo "Validating project generation properties declared in $propertiesFile" >> $cwd/$generateLog 2>&1
+  echo "Validating project properties declared in $propertiesFile" >&2
+  echo "Validating project properties declared in $propertiesFile" >> $cwd/$generateLog 2>&1
 
   missingProperties=""
   if [[ "$archetypeCatalog" == "" ]]; then missingProperties+="archetypeCatalog "; fi
@@ -271,7 +272,7 @@ function generate_project() {
   echo "  -DartifactNameUpperCase=$artifactNameUpperCase \\" >> $cwd/$generateLog 2>&1
   echo "  -DservicePort=$servicePort" >> $cwd/$generateLog 2>&1
 
-  cd $cwd
+  cd "$cwd"
   mvn archetype:generate -DarchetypeCatalog="$archetypeCatalog" -DinteractiveMode="$interactiveMode" -DarchetypeGroupId="$archetypeGroupId" -DarchetypeArtifactId="$archetypeArtifactId" -DarchetypeVersion="$archetypeVersion" -DgroupId="$groupId" -DartifactId="$artifactId" -Dversion="$version" -DartifactName="$artifactName" -DartifactNameLowerCase="$artifactNameLowerCase" -DartifactNameUpperCase="$artifactNameUpperCase" -DservicePort="$servicePort" -e -X >> $cwd/$generateLog 2>&1
   mvnStatus="$?"
   if [ "$mvnStatus" -eq "0" ]; then
@@ -290,10 +291,10 @@ function generate_project() {
 function post_build() {
   echo "Performing post-build activities" >&2
   echo "Performing post-build activities" >> $cwd/$generateLog 2>&1
-  cd $cwd/$artifactId >> $cwd/$generateLog 2>&1
+  cd "$cwd/$artifactId" >> $cwd/$generateLog 2>&1
   sed -i -- 's/__rootArtifactId__/vetservices-intenttofile/g' pom.xml >> $cwd/$generateLog 2>&1
   rm pom.xml-- >> $cwd/$generateLog 2>&1
-  cd $cwd >> $cwd/$generateLog 2>&1
+  cd "$cwd" >> $cwd/$generateLog 2>&1
 }
 
 ########## command-line execution starts here #############
