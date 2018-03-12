@@ -3,7 +3,7 @@
 # useful variables
 cwd=`pwd`
 thisScript="$0"
-thisFileName=$(echo "./gensvc.sh" | rev | cut -d'/' -f1 | rev | cut -d'.' -f1)
+thisFileName=$(echo "$thisScript" | rev | cut -d'/' -f1 | rev | cut -d'.' -f1)
 args="$@"
 # script variables
 propertiesFile="$thisFileName.properties"
