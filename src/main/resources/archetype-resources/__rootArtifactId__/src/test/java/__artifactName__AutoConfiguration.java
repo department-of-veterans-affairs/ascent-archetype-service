@@ -11,7 +11,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 
 import gov.va.vetservices.${artifactNameLowerCase}.api.${artifactName}Service;
 import gov.va.vetservices.${artifactNameLowerCase}.impl.${artifactName}ServiceImpl;
-import gov.va.vetservices.intenttofile.util.MessageUtils;
+import gov.va.vetservices.${artifactNameLowerCase}.util.MessageUtils;
 
 @Configuration
 public class ${artifactName}AutoConfiguration {
