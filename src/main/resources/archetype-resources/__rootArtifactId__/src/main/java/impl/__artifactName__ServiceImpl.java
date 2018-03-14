@@ -21,9 +21,7 @@ import gov.va.vetservices.${artifactNameLowerCase}.util.MessageUtils;
 
 
 /**
- * Implementation of the ${artifactName} business service
- *
- * @author Raju Thota
+ * Implementation of the api.${artifactName}Service client API 
  */
 @Service(value = ${artifactName}ServiceImpl.BEAN_NAME)
 @Qualifier("IMPL")
@@ -49,5 +47,12 @@ public class ${artifactName}ServiceImpl implements ${artifactName}Service {
 	/** Auto wire the spring message source for error messages. */
 	@Autowired
 	private MessageSource messageSource;
+	
+	/*
+	 * Override api.${artifactName}Service methods here.
+	 * - Hystrix and Cache annotations.
+	 * - Business logic.
+	 * - Hystrix Fallback method and error handling. 
+	 */
 
 }
