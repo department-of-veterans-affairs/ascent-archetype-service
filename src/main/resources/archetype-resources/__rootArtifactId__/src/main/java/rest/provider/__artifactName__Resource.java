@@ -28,7 +28,7 @@ public class ${artifactName}Resource implements SwaggerResponseMessages {
 	  /** The API/Model version associated with this resource */
 	  public static final String URL_PREFIX = "/v1";
 	  
-		/** Auto wiire the service implementation */
+		/** Auto wire the service implementation */
 		@Autowired
 		@Qualifier("IMPL")
 		${artifactName}Service ${artifactNameLowerCase}Service;
