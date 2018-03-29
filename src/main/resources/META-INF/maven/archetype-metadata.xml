@@ -49,6 +49,7 @@
 		<fileSet filtered="true" encoding="UTF-8">
 			<directory></directory>
 			<includes>
+				<include>**/*.gitignore</include>
 				<include>start-all.sh</include>
 				<include>docker-compose.override.yml</include>
 				<include>docker-compose.yml</include>
@@ -60,7 +61,6 @@
 			<directory></directory>
 			<includes>
 				<include>**/*.env</include>
-				<include>**/*.gitignore</include>
 				<include>**/*.sh</include>
 			</includes>
 		</fileSet>

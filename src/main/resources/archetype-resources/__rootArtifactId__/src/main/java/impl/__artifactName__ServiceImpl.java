@@ -30,11 +30,15 @@ import gov.va.vetservices.${artifactNameLowerCase}.util.MessageUtils;
 @DefaultProperties(groupKey = HystrixCommandConstants.VETSERVICES_${artifactNameUpperCase}_SERVICE_GROUP_KEY)
 public class ${artifactName}ServiceImpl implements ${artifactName}Service {
 
+	/** Constant for the logger for this class */
 	public static final Logger LOGGER = LoggerFactory.getLogger(${artifactName}ServiceImpl.class);
 
 	/** Spring bean name constant */
-	public static final String BEAN_NAME = "${artifactName}ServiceImpl";
+	public static final String BEAN_NAME = "${artifactNameLowerCase}ServiceImpl";
 	
+	/** Constant for the message when hystrix fallback method is manually invoked */
+	private static final String INVOKE_FALLBACK_MESSAGE = "Could not get data from cache or partner - invoking fallback.";
+
 	/** Auto wire the spring cache manager */
 	@Autowired
 	private CacheManager cacheManager;	
@@ -54,5 +58,40 @@ public class ${artifactName}ServiceImpl implements ${artifactName}Service {
 	 * - Business logic.
 	 * - Hystrix Fallback method and error handling. 
 	 */
+	/*EXAMPLE*/
+	/**
+	 * List of all ${artifactName}.
+	 *
+	 * @return ${artifactName}ListResponse The marshaled response from the WS request
+	 * @throws ${artifactName}Exception
+	 */
+/*	@Override
+	@CachePut(value = CacheUtil.CACHE_NAME_GETALL${artifactNameUpperCase}, key = "${symbol_pound}root.methodName",
+			unless = "T(gov.va.ascent.framework.util.AscentCacheUtil).checkResultConditions(${symbol_pound}result)")
+	@HystrixCommand(fallbackMethod = "getAll${artifactName}FallBack", commandKey = "GetAll${artifactName}Command", ignoreExceptions = {})
+	public ${artifactName}ListResponse getAll${artifactName}() {
+		// TODO code it
+		return null;
+	}
+*/
+	  /**
+	   * Hystrix Fallback Method Which is Triggered When there Is An Unexpected Exception
+	   *
+	   * @return ${artifactName}ListResponse The response retrieved from the static resource
+	   * @throws ${artifactName}FileException
+	   */
+/*	  @HystrixCommand(commandKey = "GetAll${artifactName}Command")
+	  public ${artifactName}ListResponse getAll${artifactName}FallBack() {
+
+			LOGGER.info("Entered getAll${artifactName}FallBack");
+			final ${artifactName}ListResponse ${artifactNameLowerCase}ListResponse = new ${artifactName}ListResponse();
+
+			handleFallBackThrowable();
+			${artifactNameLowerCase}ListResponse.getMessages().addAll(messageUtils.getMessages());
+			${artifactNameLowerCase}ListResponse.setDoNotCacheResponse(true);
+
+			return ${artifactNameLowerCase}ListResponse;
+	  }
+*/
 
 }

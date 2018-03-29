@@ -49,6 +49,7 @@
 			<version>${ascent.test.framework.version}</version>
 		</dependency>
 		<!-- partner jar dependencies -->
+<!-- enable partner jars as needed
 		<dependency>
 			<groupId>gov.va.vetservices.partner</groupId>
 			<artifactId>vetservices-partner-standarddata</artifactId>
@@ -64,5 +65,6 @@
 			<artifactId>vetservices-partner-treatmentfacility</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+-->
  	</dependencies>
 </project>

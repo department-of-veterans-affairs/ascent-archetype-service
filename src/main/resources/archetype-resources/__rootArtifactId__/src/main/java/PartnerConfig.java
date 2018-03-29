@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * </p>
  */
 @Configuration
+@ComponentScan(basePackages = { "gov.va.vetservices.partner" })
 public class PartnerConfig {
 	// nothing needed here
 }
