@@ -9,12 +9,12 @@ args="$@"
 propertiesFile="$thisFileName.properties"
 generateLog="$thisFileName.log"
 # properties
-# not required in properties file
+  # not required in properties file
 archetypeCatalog="local"
 interactiveMode="false"
 archetypeGroupId="gov.va.ascent"
 archetypeArtifactId="ascent-archetype-service"
-# required in properties file
+  # required in properties file
 archetypeVersion=""
 groupId=""
 artifactId=""
