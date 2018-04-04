@@ -230,8 +230,8 @@
 									<directory>${basedir}/../${rootArtifactId}-modelvalidators/src/main/resources/model/</directory>
 									<filtering>false</filtering>
 									<includes>
-										<include>JAXB-bindings.xjb</include>
-										<include>v*/${artifactName}ApiModel.xsd</include>
+										<include>jaxb-bindings.xjb</include>
+										<include>v*/${artifactNameLowerCase}ApiModel.xsd</include>
 									</includes>
 								</resource>
 								<resource>
@@ -260,7 +260,7 @@
 					</schemaIncludes>
 					<bindingDirectory>${project.basedir}/src/main/resources</bindingDirectory>
 					<bindingIncludes>
-						<include>mvn-copied/JAXB-bindings.xjb</include>
+						<include>mvn-copied/jaxb-bindings.xjb</include>
 						<include>model/jsr303-bindings.xjb</include>
 					</bindingIncludes>
 					<strict>false</strict>

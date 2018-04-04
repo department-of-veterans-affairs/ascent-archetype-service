@@ -9,12 +9,12 @@ args="$@"
 propertiesFile="$thisFileName.properties"
 generateLog="$thisFileName.log"
 # properties
-  # not required in properties file
+# not required in properties file
 archetypeCatalog="local"
 interactiveMode="false"
 archetypeGroupId="gov.va.ascent"
 archetypeArtifactId="ascent-archetype-service"
-  # required in properties file
+# required in properties file
 archetypeVersion=""
 groupId=""
 artifactId=""
@@ -291,9 +291,9 @@ function generate_project() {
 function post_build() {
   echo " Performing post-build activities" >&2
   echo " Performing post-build activities" >> $cwd/$generateLog 2>&1
-  cd "$cwd/$artifactId" >> $cwd/$generateLog 2>&1
-  sed -i -- 's/__rootArtifactId__/vetservices-intenttofile/g' pom.xml >> $cwd/$generateLog 2>&1
-  rm pom.xml-- >> $cwd/$generateLog 2>&1
+  #  cd "$cwd/$artifactId" >> $cwd/$generateLog 2>&1
+  #  sed -i -- 's/__rootArtifactId__/'$artifactId'/g' pom.xml >> $cwd/$generateLog 2>&1
+  #  rm pom.xml-- >> $cwd/$generateLog 2>&1
   cd "$cwd" >> $cwd/$generateLog 2>&1
 }
 

@@ -56,17 +56,21 @@ public class ${artifactName}ServiceImpl implements ${artifactName}Service {
 	 * Override api.${artifactName}Service methods here.
 	 * - Hystrix and Cache annotations.
 	 * - Business logic.
-	 * - Hystrix Fallback method and error handling. 
+	 * - Hystrix Fallback method and error handling.
+	 * 
+	 *  EXAMPLE follows ...
 	 */
-	/*EXAMPLE*/
+
 	/**
 	 * List of all ${artifactName}.
 	 *
 	 * @return ${artifactName}ListResponse The marshaled response from the WS request
 	 * @throws ${artifactName}Exception
 	 */
-/*	@Override
-	@CachePut(value = CacheUtil.CACHE_NAME_GETALL${artifactNameUpperCase}, key = "${symbol_pound}root.methodName",
+/*
+	@Override
+	@CachePut(value = CacheUtil.CACHE_NAME_GETALL${artifactNameUpperCase}, 
+			key = "${symbol_pound}root.methodName + T(gov.va.ascent.framework.util.AscentCacheUtil).getUserBasedKey()",
 			unless = "T(gov.va.ascent.framework.util.AscentCacheUtil).checkResultConditions(${symbol_pound}result)")
 	@HystrixCommand(fallbackMethod = "getAll${artifactName}FallBack", commandKey = "GetAll${artifactName}Command", ignoreExceptions = {})
 	public ${artifactName}ListResponse getAll${artifactName}() {
@@ -74,13 +78,15 @@ public class ${artifactName}ServiceImpl implements ${artifactName}Service {
 		return null;
 	}
 */
+
 	  /**
 	   * Hystrix Fallback Method Which is Triggered When there Is An Unexpected Exception
 	   *
 	   * @return ${artifactName}ListResponse The response retrieved from the static resource
 	   * @throws ${artifactName}FileException
 	   */
-/*	  @HystrixCommand(commandKey = "GetAll${artifactName}Command")
+/*
+	  @HystrixCommand(commandKey = "GetAll${artifactName}Command")
 	  public ${artifactName}ListResponse getAll${artifactName}FallBack() {
 
 			LOGGER.info("Entered getAll${artifactName}FallBack");

@@ -18,6 +18,7 @@ package ${package}.api;
  */
 public interface ${artifactName}Service {
 
-	// add API method signatures here
+	// add API method signatures here, for example
+	// pubic SomeResponse getSomething(SomeRequest);
 	
 }

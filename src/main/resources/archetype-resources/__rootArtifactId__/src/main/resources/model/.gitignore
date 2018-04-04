@@ -3,4 +3,4 @@
 #set( $symbol_escape = '\' )
 /v1/
 /xsd/
-/JAXB-bindings.xjb
+/jaxb-bindings.xjb
