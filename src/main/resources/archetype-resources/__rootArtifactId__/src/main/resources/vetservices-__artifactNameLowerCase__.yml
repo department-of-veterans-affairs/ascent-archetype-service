@@ -19,9 +19,12 @@ ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${sym
 ascent:
   cache:
     defaultExpires: 86400 ${symbol_pound} (Seconds)
-    expires:
-      ${symbol_pound}Cache Name: TTL (In Seconds)
-      refdataService: 1800
+    ${symbol_pound}expires:
+      ${symbol_pound}${symbol_pound} name: Cache Name
+      ${symbol_pound}${symbol_pound} ttl:  TTL (In Seconds)
+      ${symbol_pound}- 
+      ${symbol_pound}  name: [SERVICE_METHOD_NAME]_@project.name@_@project.version@
+      ${symbol_pound}  ttl: 604800 ${symbol_pound}1 week
 
   ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
   ${symbol_pound}Property configuration to enable or disable JWT security for service calls
