@@ -28,16 +28,11 @@
 	</modules>
 
 	<properties>
-	
-		<!-- vetservices-refdata properties -->
+		<!-- jsr303 maven plugin version -->
 		<ascent.jsr303keygen.maven.plugin.version>[0.0.1,)</ascent.jsr303keygen.maven.plugin.version>
-		
-		<!-- for Ascent platform versions, see DependencyManagement section below -->
-		
 		<!-- Docker properties to add min and max memory for spring boot jar start up -->
 		<docker.java.opts.ms>-Xms64m</docker.java.opts.ms>
 		<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
-		
 	</properties>
 
 	<!-- dependencies inherited by all projects -->
@@ -49,22 +44,22 @@
 			<version>${ascent.test.framework.version}</version>
 		</dependency>
 		<!-- partner jar dependencies -->
-<!-- enable partner jars as needed
-		<dependency>
-			<groupId>gov.va.vetservices.partner</groupId>
-			<artifactId>vetservices-partner-standarddata</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>gov.va.vetservices.partner</groupId>
-			<artifactId>vetservices-partner-shareddata</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>gov.va.vetservices.partner</groupId>
-			<artifactId>vetservices-partner-treatmentfacility</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
--->
+	<!-- enable partner jars as needed
+			<dependency>
+				<groupId>gov.va.vetservices.partner</groupId>
+				<artifactId>vetservices-partner-standarddata</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>gov.va.vetservices.partner</groupId>
+				<artifactId>vetservices-partner-shareddata</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>gov.va.vetservices.partner</groupId>
+				<artifactId>vetservices-partner-treatmentfacility</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+	-->
  	</dependencies>
 </project>
