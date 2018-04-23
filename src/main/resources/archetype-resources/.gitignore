@@ -25,12 +25,12 @@ ${symbol_pound}${symbol_pound}${symbol_pound} IntelliJ IDEA ${symbol_pound}${sym
 *.ipr
 
 ${symbol_pound}${symbol_pound}${symbol_pound} NetBeans ${symbol_pound}${symbol_pound}${symbol_pound}
-nbproject/private/
-build/
+nbproject/
 nbbuild/
-dist/
 nbdist/
 .nb-gradle/
+build/
+dist/
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Eclipse ${symbol_pound}${symbol_pound}${symbol_pound}
 .metadata
