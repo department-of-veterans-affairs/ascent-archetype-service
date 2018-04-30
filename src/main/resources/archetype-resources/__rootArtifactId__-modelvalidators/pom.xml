@@ -24,8 +24,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>gov.va.ascent</groupId>
-			<artifactId>ascent-platform-starter</artifactId>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
 		</dependency>
 	</dependencies>
 
