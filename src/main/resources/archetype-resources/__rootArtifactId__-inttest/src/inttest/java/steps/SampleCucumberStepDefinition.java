@@ -16,54 +16,55 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import gov.va.ascent.test.framework.restassured.BaseStepDef;
+import gov.va.ascent.test.framework.restassured.BaseStepDefHandler;
+
 
 /**
- * Execute a step from the Feature file. The extended {@link BaseStepDef} provides most of the functionality to set up, process, and
- * validate requests.
+ * This is a sample step definition file. BaseStepDefHandler object that extends
+ * BaseStepDef to handle rest based api call. Step definition class inject this
+ * object thru constructor.
  */
-public class SampleCucumberStepDefinition extends BaseStepDef {
+public class SampleCucumberStepDefinition {
 
 	final static Logger LOGGER = LoggerFactory.getLogger(SampleCucumberStepDefinition.class);
 
-	/**
-	 * Initialize the REST environment
-	 */
+	private BaseStepDefHandler handler = null;
+
+	public SampleCucumberStepDefinition(BaseStepDefHandler handler) {
+		this.handler = handler;
+	}
+
 	@Before({})
 	public void setUpREST() {
-		initREST();
+		handler.initREST();
 	}
 
-	/* An example of Give / When / Then:
-
-	@Given("^The Given statement that references the request header${symbol_dollar}")
-	public void theGivenStatementThatReferencesTheRequestHeader(final String whichList,
-			final Map<String, String> tblHeader) throws Throwable {
-		passHeaderInformation(tblHeader);
+	/* An example of Step Definition:
+	 
+	@When("^I make a GET request using \"([^\"]*)\"$")
+	public void makingGetRequest(final String strURL) throws Throwable {
+		String baseUrl = handler.getRestConfig().getPropertyName("baseURL", true);
+		handler.invokeAPIUsingGet(baseUrl + strURL);
 	}
+
+	@When("^Using bad token I make a GET request using \"([^\"]*)\"$")
+	public void makingGetRequestWithBadToken(final String strURL) throws Throwable {
+		String baseUrl = handler.getRestConfig().getPropertyName("baseURL", true);
+		handler.invokeAPIUsingGet(baseUrl + strURL);
+	}  
 	
-	@When("^Some action occurs${symbol_dollar}")
-	public void someActionOccurs(final String serviceUrl, final String someInputValue) throws Throwable {
-		super.resUtil.setUpRequest(headerMap);
-		String baseUrl = super.restConfig.getPropertyName("baseURL", true);
-		String url = baseUrl + serviceUrl + "/" + someInputValue;
-		invokeAPIUsingGet(url, true);
-	}
-
-	@Then("^Verify the result of the test${symbol_dollar}")
-	public void httpStatusCodeIs(final int statusCode) throws Throwable {
-		super.validateStatusCode(statusCode);
-	}
-
 	*/
 
+	
 	/**
 	 * Post processing for each scenario.
 	 * 
 	 * @param scenario
 	 */
+
 	@After({})
 	public void cleanUp(final Scenario scenario) {
-		postProcess(scenario);
+		handler.postProcess(scenario);
 	}
 
 }

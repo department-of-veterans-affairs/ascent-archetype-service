@@ -13,15 +13,12 @@ import cucumber.api.junit.Cucumber;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(strict = false, 
-	plugin = { "pretty", "html:target/site/cucumber-pretty", "json:target/cucumber.json" }, 
-	features = {
-		// add paths to all feature files here
-		"src/inttest/resources/gov/va/vetservices/${artifactNameLowerCase}/feature/sample.feature"
-	}, 
-	glue = { "gov.va.vetservices.${artifactNameLowerCase}.steps" }, 
-	tags = { "@CI" })
-public class VetServices${artifactName}Runner extends AbstractTestNGCucumberTests {
+@CucumberOptions(strict = false, plugin = { "pretty", "html:target/site/cucumber-pretty",
+		"json:target/cucumber.json" }, features = {
+				// add paths to all feature files here
+				"src/inttest/resources/gov/va/vetservices/${artifactNameLowerCase}/feature/sample.feature" }, glue = {
+						"gov.va.vetservices.${artifactNameLowerCase}.steps" })
+public class VetServices${artifactName}Runner extends AbstractTestNGCucumberTests{
 
 	final Logger LOGGER = LoggerFactory.getLogger(VetServices${artifactName}Runner.class);
 
