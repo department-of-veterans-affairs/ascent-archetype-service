@@ -18,8 +18,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 				// add paths to all feature files here
 				"src/inttest/resources/gov/va/vetservices/${artifactNameLowerCase}/feature/sample.feature" }, glue = {
 						"gov.va.vetservices.${artifactNameLowerCase}.steps" })
-public class VetServices$ {
-	artifactName}Runner extends AbstractTestNGCucumberTests{
+public class VetServices${artifactName}Runner extends AbstractTestNGCucumberTests{
 
 	final Logger LOGGER = LoggerFactory.getLogger(VetServices${artifactName}Runner.class);
 
