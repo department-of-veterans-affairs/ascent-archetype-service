@@ -1,13 +1,16 @@
-### vetservices-refdata ###
-vetservices-refdata*.log
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+${symbol_pound}${symbol_pound}${symbol_pound} ${artifactId} ${symbol_pound}${symbol_pound}${symbol_pound}
+${artifactId}*.log
 
-### Maven ###
+${symbol_pound}${symbol_pound}${symbol_pound} Maven ${symbol_pound}${symbol_pound}${symbol_pound}
 target/
 
-### MAC ###
+${symbol_pound}${symbol_pound}${symbol_pound} MAC ${symbol_pound}${symbol_pound}${symbol_pound}
 *.DS_Store
 
-### STS ###
+${symbol_pound}${symbol_pound}${symbol_pound} STS ${symbol_pound}${symbol_pound}${symbol_pound}
 .apt_generated
 .classpath
 .factorypath
@@ -15,34 +18,34 @@ target/
 .settings
 .springBeans
 
-### IntelliJ IDEA ###
+${symbol_pound}${symbol_pound}${symbol_pound} IntelliJ IDEA ${symbol_pound}${symbol_pound}${symbol_pound}
 .idea
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
-nbproject/private/
-build/
+${symbol_pound}${symbol_pound}${symbol_pound} NetBeans ${symbol_pound}${symbol_pound}${symbol_pound}
+nbproject/
 nbbuild/
-dist/
 nbdist/
 .nb-gradle/
+build/
+dist/
 
-### Eclipse ###
+${symbol_pound}${symbol_pound}${symbol_pound} Eclipse ${symbol_pound}${symbol_pound}${symbol_pound}
 .metadata
 
-### DB4O ###
+${symbol_pound}${symbol_pound}${symbol_pound} DB4O ${symbol_pound}${symbol_pound}${symbol_pound}
 **/*.db4o
 
-### SoupUI ###
+${symbol_pound}${symbol_pound}${symbol_pound} SoupUI ${symbol_pound}${symbol_pound}${symbol_pound}
 **/soapui*.log
 
-### Ignore int test log file ###
+${symbol_pound}${symbol_pound}${symbol_pound} Ignore int test log file ${symbol_pound}${symbol_pound}${symbol_pound}
 **/rest*.log
-# ignore logs put in the project root
+${symbol_pound} ignore logs put in the project root
 /*.log
 
-### Platform ###
+${symbol_pound}${symbol_pound}${symbol_pound} Platform ${symbol_pound}${symbol_pound}${symbol_pound}
 .docker-jar-project-marker
 /bin/

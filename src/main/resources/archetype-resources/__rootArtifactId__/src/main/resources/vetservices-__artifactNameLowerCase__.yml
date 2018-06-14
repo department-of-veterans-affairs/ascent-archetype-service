@@ -19,9 +19,12 @@ ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${sym
 ascent:
   cache:
     defaultExpires: 86400 ${symbol_pound} (Seconds)
-    expires:
-      ${symbol_pound}Cache Name: TTL (In Seconds)
-      refdataService: 1800
+    ${symbol_pound}expires:
+      ${symbol_pound}${symbol_pound} name: Cache Name
+      ${symbol_pound}${symbol_pound} ttl:  TTL (In Seconds)
+      ${symbol_pound}- 
+      ${symbol_pound}  name: [SERVICE_METHOD_NAME]_@project.name@_@project.version@
+      ${symbol_pound}  ttl: 604800 ${symbol_pound}1 week
 
   ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
   ${symbol_pound}Property configuration to enable or disable JWT security for service calls
@@ -35,7 +38,7 @@ ascent:
     description: API Error Keys <a href="swagger/error-keys.html">error keys</a>
     groupName: ${rootArtifactId}-@project.version@
     version: ${symbol_dollar}{info.build.version}
-    securePaths: /${rootArtifactId}.*
+    securePaths: /api/.*/v?.*|/v[0-9]/?.*
 ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} 
 ${symbol_pound}   Logging Level for packages
 ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
@@ -118,6 +121,17 @@ hystrix:
             ${symbol_pound} IMPORTANT NOTE: THIS TIMEOUT VALUE MUST BE GREATER THAN ANY SERVICE TIMEOUT TO AVOID ERRORS
             ${symbol_pound} Default Value: 1000
             timeoutInMilliseconds: 20000
+  threadpool:
+    default:
+      ${symbol_pound} This property allows the configuration for maximumSize to take effect
+      allowMaximumSizeToDivergeFromCoreSize: true
+      ${symbol_pound} maximum number of threads in the pool. Default value for coreSize and maximumSize = 10 
+      maximumSize: 100
+      ${symbol_pound} maximum number of Runnable task the ExecutorService can take in.
+      maxQueueSize: 200
+      ${symbol_pound} This property exists because the maxQueueSize of a BlockingQueue cannot be dynamically changed and we want to allow you to 
+      ${symbol_pound} dynamically change the queue size that affects rejections
+      queueSizeRejectionThreshold: 200
 
 ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
 ${symbol_pound} Sleuth configuration

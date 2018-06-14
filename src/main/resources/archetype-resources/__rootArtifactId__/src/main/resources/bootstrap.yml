@@ -53,6 +53,7 @@ eureka:
     serviceUrl:
       defaultZone: http://${symbol_dollar}{discovery.username:eureka}:${symbol_dollar}{discovery.password:default}@localhost:${symbol_dollar}{discovery.server.port:8761}/eureka/
   instance:
+    hostname: "${symbol_dollar}{INSTANCE_HOST_NAME:localhost}"
     leaseRenewalIntervalInSeconds: 5
     leaseExpirationDurationInSeconds: 10
 

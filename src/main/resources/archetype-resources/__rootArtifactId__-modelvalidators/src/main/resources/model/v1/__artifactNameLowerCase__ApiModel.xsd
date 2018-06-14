@@ -5,7 +5,7 @@
 <xs:schema version="1.0" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
 	xmlns:afw="http://www.va.gov/ascent/framework/schema/v1"
-	xmlns="http://gov.va/vetservices/refdata/model/v1" 
+	xmlns="http://gov.va/vetservices/${artifactNameLowerCase}/model/v1" 
 	targetNamespace="http://gov.va/vetservices/${artifactNameLowerCase}/model/v1"
 >
 

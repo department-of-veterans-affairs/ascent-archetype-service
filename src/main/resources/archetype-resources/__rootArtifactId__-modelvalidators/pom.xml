@@ -25,7 +25,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>gov.va.ascent</groupId>
-			<artifactId>ascent-platform-starter</artifactId>
+			<artifactId>ascent-framework</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -44,7 +48,7 @@
 				we have to unpack the framework schema from the ascent-framework JAR.
 				This allows executions in the maven-jaxb2-plugin to function
 				without regenerating the classes declared in the framework XSD.
-				- ascent-framework classes are bound in JAXB-bindings.xjb
+				- ascent-framework classes are bound in jaxb-bindings.xjb
 			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -84,7 +88,7 @@
 					</schemaIncludes>
 					<bindingDirectory>${project.basedir}/src/main/resources/model/</bindingDirectory>
 					<bindingIncludes>
-						<include>JAXB-bindings.xjb</include>
+						<include>jaxb-bindings.xjb</include>
 					</bindingIncludes>
 					<strict>false</strict>
 					<extension>true</extension>

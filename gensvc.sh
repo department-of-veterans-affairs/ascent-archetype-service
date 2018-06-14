@@ -85,15 +85,15 @@ function exit_now() {
       echo " Unexpected error code: $code ... aborting immediately" >&2
       echo " Unexpected error code: $code ... aborting immediately" >> $cwd/$generateLog 2>&1
     fi
-    echo "" >&2
-    echo " Review execution in \"$generateLog\"" >&2
-    echo " Use \"$thisScript -h\" for script usage help" >&2
-    echo "------------------------------------------------------------------------" >&2
-    echo "" >> $cwd/$generateLog 2>&1
-    echo " Review execution in \"$generateLog\"" >> $cwd/$generateLog 2>&1
-    echo " Use \"$thisScript -h\" for script usage help" >> $cwd/$generateLog 2>&1
-    echo "------------------------------------------------------------------------" >> $cwd/$generateLog 2>&1
   fi
+  echo "" >&2
+  echo " Review execution in \"$generateLog\"" >&2
+  echo " Use \"$thisScript -h\" for script usage help" >&2
+  echo "------------------------------------------------------------------------" >&2
+  echo "" >> $cwd/$generateLog 2>&1
+  echo " Review execution in \"$generateLog\"" >> $cwd/$generateLog 2>&1
+  echo " Use \"$thisScript -h\" for script usage help" >> $cwd/$generateLog 2>&1
+  echo "------------------------------------------------------------------------" >> $cwd/$generateLog 2>&1
   # exit
   exit $code
 }
@@ -289,11 +289,11 @@ function generate_project() {
 ## function to perform post-build activities                ##
 ## scope: private (internal calls only)                     ##
 function post_build() {
-  echo "Performing post-build activities" >&2
-  echo "Performing post-build activities" >> $cwd/$generateLog 2>&1
-  cd "$cwd/$artifactId" >> $cwd/$generateLog 2>&1
-  sed -i -- 's/__rootArtifactId__/vetservices-intenttofile/g' pom.xml >> $cwd/$generateLog 2>&1
-  rm pom.xml-- >> $cwd/$generateLog 2>&1
+  echo " Performing post-build activities" >&2
+  echo " Performing post-build activities" >> $cwd/$generateLog 2>&1
+  #  cd "$cwd/$artifactId" >> $cwd/$generateLog 2>&1
+  #  sed -i -- 's/__rootArtifactId__/'$artifactId'/g' pom.xml >> $cwd/$generateLog 2>&1
+  #  rm pom.xml-- >> $cwd/$generateLog 2>&1
   cd "$cwd" >> $cwd/$generateLog 2>&1
 }
 
@@ -312,4 +312,4 @@ validate_properties
 pre_build
 generate_project
 post_build
-echo "------------------------------------------------------------------------" >&2
+exit_now 0

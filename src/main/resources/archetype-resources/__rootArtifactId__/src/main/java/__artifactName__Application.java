@@ -26,6 +26,11 @@ import org.springframework.context.annotation.Import;
 @Import(PartnerConfig.class)
 public class ${artifactName}Application {
 
+	/**
+	 * Runs the spring-boot application with this class and any command-line arguments.
+	 *
+	 * @param args the array or command-line arguments
+	 */
     public static void main(String[] args) {
         SpringApplication.run(${artifactName}Application.class, args);
     }

@@ -64,7 +64,7 @@ public class SampleCustomJSR303Validator
 		} else {
 			if ((someInputValue.length() > 2) || !Pattern.matches(SOME_PATTERN, someInputValue)) {
 				final ConstraintValidatorContext.ConstraintViolationBuilder builder = context
-						.buildConstraintViolationWithTemplate(""); // change to: ${artifactName}MessageKeys.SOME_MESSAGE_KEY_CONSTANT);
+						.buildConstraintViolationWithTemplate(""); // change "" to: ${artifactName}MessageKeys.SOME_MESSAGE_KEY_CONSTANT);
 				builder.addConstraintViolation();
 				valid = false;
 			}

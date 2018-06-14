@@ -11,10 +11,10 @@ The service operations offer <span style="color:red;font-style:italic;">ADD PURP
 
 ${symbol_pound}${symbol_pound} Operations offered
 
-<span style="color:red;font-style:italic;">LIST API OPERATIONS HERE. 
-EXAMPLE:
-1. /api/${artifactNameLowerCase}/v1/OPERATION<br>
-  A description of what the OPERATION does.
+<span style="color:red;font-style:italic;">LIST API OPERATIONS HERE. <br/>
+EXAMPLE: </br/>
+1. /api/${artifactNameLowerCase}/v1/OPERATION<br/>
+&nbsp;&nbsp;&nbsp;A description of what the OPERATION does.
 </span>
 
 ${symbol_pound} Service Consumers - How to use this API

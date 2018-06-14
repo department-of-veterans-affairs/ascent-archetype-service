@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
 	xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	name="__rootArtifactId__-reactor" 
+	name="ascent-archetype-service" 
 >
 	<!-- ##########################################################################
 		This file meets custom requirements for VetServices Microservice projects.
@@ -49,6 +49,7 @@
 		<fileSet filtered="true" encoding="UTF-8">
 			<directory></directory>
 			<includes>
+				<include>**/*.gitignore</include>
 				<include>start-all.sh</include>
 				<include>docker-compose.override.yml</include>
 				<include>docker-compose.yml</include>
@@ -60,7 +61,6 @@
 			<directory></directory>
 			<includes>
 				<include>**/*.env</include>
-				<include>**/*.gitignore</include>
 				<include>**/*.sh</include>
 			</includes>
 		</fileSet>

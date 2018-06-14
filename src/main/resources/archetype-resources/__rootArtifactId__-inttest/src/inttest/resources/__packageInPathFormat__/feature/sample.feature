@@ -1,43 +1,55 @@
-Feature: Get Country List 
+Feature: Get Country List
 
-#Background: 
-#   Given valid VAAFI headers
+  #Background:
+  #   Given valid VAAFI headers
+  @countrylist @HappyPath
+  Scenario Outline: Get Country List - successful
+    Given the claimant is a "<Veteran>"
+    And invoke token API by passing header from "<tokenrequestfile>" and sets the authorization in the header
+    When I make a GET request using "<ServiceURL>"
+    Then the service returns status code = 200
+    And the response should be same as "<ResponseFile>"
 
-@CI @VA @HappyPath
-Scenario Outline: Get Country List - successful 
-	Given I pass the header information to get the Country list 
-		| Accept       | application/json;v=3 |
-		| Content-Type | application/json;v=3 |
-	When I make a GET request using "<ServiceURL>" 
-	Then the response code to be 200
-	And the response should be same as "<ResponseFile>" 
-	
-	Examples: 
-		| ServiceURL                | ResponseFile         |
-		| /api/refdata/v1/countries | countryList.Response |
+    @CI
+    Examples: 
+      | Veteran    | tokenrequestfile | ServiceURL                | ResponseFile         |
+      | ci-janedoe | ci/token.Request | /api/refdata/v1/countries | countryList.Response |
 
-@CI @VA @HttpError
-Scenario Outline: Get Country List - partner service error 401
-	Given I pass the header information to get the Country list
-		| Accept       | application/json;v=3 |
-		| Content-Type | application/json;v=3 |
-	When Using bad token I make a GET request using "<ServiceURL>" 
-	Then the response code to be 401
-	And the response should be same as "<ResponseFile>" 
-	
-	Examples: 
-		| ServiceURL                | ResponseFile                 |
-		| /api/refdata/v1/countries | generalHttpError401.Response |
+    @VA
+    Examples: 
+      | Veteran    | tokenrequestfile | ServiceURL                | ResponseFile         |
+      | va-janedoe | va/token.Request | /api/refdata/v1/countries | countryList.Response |
 
-@CI @VA @HttpError
-Scenario Outline: Get Country List - service error 406
-	Given I pass the header information to get the Country list
-		| Accept       | test |
-		| Content-Type | application/json;v=3 |
-	When I make a GET request using "<ServiceURL>" 
-	Then the response code to be 406 
-	
-	Examples: 
-		| ServiceURL                |
-		| /api/refdata/v1/countries |
-			
+  @countrylist @HttpError
+  Scenario Outline: Get Country List - partner service error 401
+    Given the claimant is a "<Veteran>"
+    When Using bad token I make a GET request using "<ServiceURL>"
+    Then the service returns status code = 401
+    And the response should be same as "<ResponseFile>"
+
+    @CI
+    Examples: 
+      | Veteran    | ServiceURL                | ResponseFile                 |
+      | ci-janedoe | /api/refdata/v1/countries | generalHttpError401.Response |
+
+    @VA
+    Examples: 
+      | Veteran    | ServiceURL                | ResponseFile                 |
+      | va-janedoe | /api/refdata/v1/countries | generalHttpError401.Response |
+
+  @countrylist @HttpError
+  Scenario Outline: Get Country List - service error 406
+    Given the claimant is a "<Veteran>"
+    And invoke token API by passing header from "<tokenrequestfile>" and sets the authorization in the header
+    When I make a GET request using "<ServiceURL>"
+    Then the service returns status code = 406
+
+    @CI
+    Examples: 
+      | Veteran | tokenrequestfile | ServiceURL                |
+      | ci-jane | ci/token.Request | /api/refdata/v1/countries |
+
+    @VA
+    Examples: 
+      | Veteran | tokenrequestfile | ServiceURL                |
+      | va-jane | va/token.Request | /api/refdata/v1/countries |
