@@ -41,7 +41,7 @@
 			<groupId>gov.va.ascent</groupId>
 			<artifactId>ascent-test-framework</artifactId>
 			<scope>test</scope>
-			<version>${ascent.test.framework.version}</version>
+			<version>${ascent-test-framework.version}</version>
 		</dependency>
 		<!-- partner jar dependencies -->
 	<!-- enable partner jars as needed
