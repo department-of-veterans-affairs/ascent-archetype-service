@@ -172,7 +172,7 @@ ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${sym
 spring.profiles: docker-demo, aws-ci
 spring.profiles.include: remote_client_sims
 ---
-spring.profiles: aws-stage, aws-prod
+spring.profiles: aws-dev, aws-stage, aws-prod
 spring.profiles.include: remote_client_impls
 ---
 ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
