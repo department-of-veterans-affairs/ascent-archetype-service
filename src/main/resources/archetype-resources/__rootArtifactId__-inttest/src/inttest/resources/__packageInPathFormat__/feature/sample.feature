@@ -10,7 +10,7 @@ Feature: Get Country List
     Then the service returns status code = 200
     And the response should be same as "<ResponseFile>"
 
-    @CI
+    @DEV
     Examples: 
       | Veteran    | tokenrequestfile | ServiceURL                | ResponseFile         |
       | ci-janedoe | ci/token.Request | /api/refdata/v1/countries | countryList.Response |
@@ -27,7 +27,7 @@ Feature: Get Country List
     Then the service returns status code = 401
     And the response should be same as "<ResponseFile>"
 
-    @CI
+    @DEV
     Examples: 
       | Veteran    | ServiceURL                | ResponseFile                 |
       | ci-janedoe | /api/refdata/v1/countries | generalHttpError401.Response |
@@ -44,7 +44,7 @@ Feature: Get Country List
     When I make a GET request using "<ServiceURL>"
     Then the service returns status code = 406
 
-    @CI
+    @DEV
     Examples: 
       | Veteran | tokenrequestfile | ServiceURL                |
       | ci-jane | ci/token.Request | /api/refdata/v1/countries |

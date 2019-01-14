@@ -43,8 +43,17 @@
 			<directory>__rootArtifactId__-perftest</directory>
 			<includes>
 				<include>**/*.txt</include>
+				<include>**/*.csv</include>
+				<include>**/*.xml</include>
+				<include>**/*.md</include>
 			</includes>
 		</fileSet>
+		<fileSet filtered="false" encoding="UTF-8">
+			<directory>__rootArtifactId__-perftest</directory>
+			<includes>
+				<include>**/*.jmx</include>
+			</includes>
+		</fileSet>		
 		<!-- rules for files in the root directory -->
 		<fileSet filtered="true" encoding="UTF-8">
 			<directory></directory>
