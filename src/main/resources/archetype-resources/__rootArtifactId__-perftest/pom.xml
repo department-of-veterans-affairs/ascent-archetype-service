@@ -1,0 +1,124 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>${groupId}</groupId>
+		<artifactId>${rootArtifactId}-reactor</artifactId>
+		<version>${version}</version>
+		<relativePath>..</relativePath>
+	</parent>
+	
+	<artifactId>${rootArtifactId}-perftest</artifactId>
+	<packaging>jar</packaging>
+	<name>${rootArtifactId}-perftest</name>
+	<description>VetServices ${artifactName} Performance Test</description>
+
+	<properties>
+		<domain>localhost</domain>
+		<port>8762</port>
+		<protocol>http</protocol>	
+		<BearerTokenCreate.threadGroup.threads>5</BearerTokenCreate.threadGroup.threads>
+		<BearerTokenCreate.threadGroup.rampUp>1</BearerTokenCreate.threadGroup.rampUp>
+		<BearerTokenCreate.threadGroup.loopCount>1</BearerTokenCreate.threadGroup.loopCount>
+	</properties>
+
+	<profiles>
+	    <profile>
+	        <id>perftest</id>
+			<build>
+				<plugins>
+					<!-- JMeter Maven Plugin to set performance test -D parameters-->
+					<plugin>
+						<groupId>com.lazerycode.jmeter</groupId>
+						<artifactId>jmeter-maven-plugin</artifactId>
+						<configuration>
+							<skip>${skipPerfTests}</skip>
+						</configuration>
+						<executions>
+							<execution>
+								<id>jmeter-configuration</id>
+								<goals>
+									<goal>configure</goal>
+								</goals>
+								<configuration>
+									<propertiesUser>
+										<baseurl>${domain}</baseurl>
+										<domain>${domain}</domain>
+										<port>${port}</port>
+										<protocol>${protocol}</protocol>
+										<BearerTokenCreate.threadGroup.threads>${BearerTokenCreate.threadGroup.threads}</BearerTokenCreate.threadGroup.threads>
+										<BearerTokenCreate.threadGroup.rampUp>${BearerTokenCreate.threadGroup.rampUp}</BearerTokenCreate.threadGroup.rampUp>
+										<BearerTokenCreate.threadGroup.loopCount>${BearerTokenCreate.threadGroup.loopCount}</BearerTokenCreate.threadGroup.loopCount>
+									</propertiesUser>
+									<!--
+									JMeter properties can be specified in this POM as described here:
+										https://github.com/jmeter-maven-plugin/jmeter-maven-plugin/wiki/Modifying-Properties
+									See:
+										https://jmeter.apache.org/usermanual/properties_reference.html#language
+										https://svn.apache.org/repos/asf/jmeter/branches/testbeans_experimental_branch/bin/jmeter.properties
+									Example (set specific log level for jmeter.junit package):
+									<propertiesJMeter>
+										<log_level.jmeter.junit>DEBUG</log_level.jmeter.junit>
+									</propertiesJMeter>
+									-->
+									<propertiesJMeter>
+										<log_level.jmeter.control>DEBUG</log_level.jmeter.control>
+										<log_level.jmeter.engine>DEBUG</log_level.jmeter.engine>
+										<log_level.jmeter.threads>DEBUG</log_level.jmeter.threads>
+									</propertiesJMeter>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+				<pluginManagement>
+					<plugins>
+						<!--This plugin's configuration is used to store Eclipse m2e settings 
+							only. It has no influence on the Maven build itself. -->
+						<plugin>
+							<groupId>org.eclipse.m2e</groupId>
+							<artifactId>lifecycle-mapping</artifactId>
+							<version>${lifecycle.mapping.version}</version>
+							<configuration>
+								<lifecycleMappingMetadata>
+									<pluginExecutions>
+										<pluginExecution>
+											<pluginExecutionFilter>
+												<groupId>com.lazerycode.jmeter</groupId>
+												<artifactId>jmeter-maven-plugin</artifactId>
+												<versionRange>${jmeter-maven-plugin.versionRange}</versionRange>
+												<goals>
+													<goal>configure</goal>
+												</goals>
+											</pluginExecutionFilter>
+											<action>
+												<ignore></ignore>
+											</action>
+										</pluginExecution>
+									</pluginExecutions>
+								</lifecycleMappingMetadata>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+	  </profile>
+	</profiles>
+	<build>
+		<plugins>
+			<!-- disable spring-boot plugins, otherwise tries to make this module executable -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
