@@ -3,8 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import gov.va.ascent.framework.log.AscentLogger;
+import gov.va.ascent.framework.log.AscentLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.CacheManager;
@@ -31,7 +31,7 @@ import gov.va.vetservices.${artifactNameLowerCase}.util.MessageUtils;
 public class ${artifactName}ServiceImpl implements ${artifactName}Service {
 
 	/** Constant for the logger for this class */
-	public static final Logger LOGGER = LoggerFactory.getLogger(${artifactName}ServiceImpl.class);
+	public static final AscentLogger LOGGER = AScentLoggerFactory.getLogger(${artifactName}ServiceImpl.class);
 
 	/** Spring bean name constant */
 	public static final String BEAN_NAME = "${artifactNameLowerCase}ServiceImpl";

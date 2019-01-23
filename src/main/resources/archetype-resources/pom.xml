@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>gov.va.ascent</groupId>
 		<artifactId>ascent-platform-parent</artifactId>
-		<version>0.0.6-SNAPSHOT</version>
+		<version>0.0.13</version>
 		<!-- Force artifact resolution from repository -->
 		<relativePath />
 	</parent>
@@ -27,21 +27,13 @@
 		<module>${artifactId}-inttest</module>
 	</modules>
 
-	<properties>
-		<!-- jsr303 maven plugin version -->
-		<ascent.jsr303keygen.maven.plugin.version>[0.0.1,)</ascent.jsr303keygen.maven.plugin.version>
-		<!-- Docker properties to add min and max memory for spring boot jar start up -->
-		<docker.java.opts.ms>-Xms64m</docker.java.opts.ms>
-		<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
-	</properties>
-
 	<!-- dependencies inherited by all projects -->
 	<dependencies>
 		<dependency>
 			<groupId>gov.va.ascent</groupId>
 			<artifactId>ascent-test-framework</artifactId>
 			<scope>test</scope>
-			<version>${ascent-test-framework.version}</version>
+			<version>0.0.11-SNAPSHOT</version>
 		</dependency>
 		<!-- partner jar dependencies -->
 	<!-- enable partner jars as needed

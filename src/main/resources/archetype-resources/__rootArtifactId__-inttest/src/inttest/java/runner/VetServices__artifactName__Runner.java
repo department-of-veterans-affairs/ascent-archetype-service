@@ -4,8 +4,8 @@
 package ${package}.runner;
 
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import gov.va.ascent.framework.log.AscentLogger;
+import gov.va.ascent.framework.log.AscentLoggerFactory;
 import org.testng.annotations.BeforeSuite;
 
 import cucumber.api.CucumberOptions;
@@ -20,7 +20,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 						"gov.va.vetservices.${artifactNameLowerCase}.steps" })
 public class VetServices${artifactName}Runner extends AbstractTestNGCucumberTests{
 
-	final Logger LOGGER = LoggerFactory.getLogger(VetServices${artifactName}Runner.class);
+	private static final AscentLogger LOGGER = AscentLoggerFactory.getLogger(VetServices${artifactName}Runner.class);
 
 	@BeforeSuite(alwaysRun = true)
 	public void setUp() throws Exception {

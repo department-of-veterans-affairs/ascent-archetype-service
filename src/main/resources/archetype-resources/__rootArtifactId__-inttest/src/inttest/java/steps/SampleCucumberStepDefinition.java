@@ -5,8 +5,8 @@ package ${package}.steps;
 
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import gov.va.ascent.framework.log.AscentLogger;
+import gov.va.ascent.framework.log.AscentLoggerFactory;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -26,7 +26,7 @@ import gov.va.ascent.test.framework.restassured.BaseStepDefHandler;
  */
 public class SampleCucumberStepDefinition {
 
-	final static Logger LOGGER = LoggerFactory.getLogger(SampleCucumberStepDefinition.class);
+	private static final AscentLogger LOGGER = AscentLoggerFactory.getLogger(SampleCucumberStepDefinition.class);
 
 	private BaseStepDefHandler handler = null;
 

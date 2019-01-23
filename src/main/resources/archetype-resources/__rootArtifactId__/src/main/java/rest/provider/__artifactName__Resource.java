@@ -3,8 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.rest.provider;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import gov.va.ascent.framework.log.AscentLogger;
+import gov.va.ascent.framework.log.AscentLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +24,7 @@ import gov.va.vetservices.${artifactNameLowerCase}.util.MessageUtils;
 public class ${artifactName}Resource implements SwaggerResponseMessages {
 
 	  /** Constant for the logger for this class */
-	  private static final Logger LOGGER = LoggerFactory.getLogger(${artifactName}Resource.class);
+	  private static final AscentLogger LOGGER = AscentLoggerFactory.getLogger(${artifactName}Resource.class);
 
 	  /** The API/Model version associated with this resource */
 	  public static final String URL_PREFIX = "/v1";

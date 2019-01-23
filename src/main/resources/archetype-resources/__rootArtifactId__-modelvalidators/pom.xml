@@ -81,7 +81,7 @@
 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>${maven.jaxb2.plugin.version}</version>
+				<version>${maven-jaxb2-plugin-jvnet.version}</version>
 				<configuration>
 					<schemaIncludes>
 						<schemaInclude>**/*.xsd</schemaInclude>
@@ -107,7 +107,7 @@
 						<plugin>
 							<groupId>com.github.krasa</groupId>
 							<artifactId>krasa-jaxb-tools</artifactId>
-							<version>${krasa.jaxb.tools.version}</version>
+							<version>${krasa-jaxb-tools.version}</version>
 						</plugin>
 						<!-- Enable arbitrary annotations (e.g. JSR303 Custom Annotations).
 							Args used:
@@ -116,7 +116,7 @@
 						<plugin>
 							<groupId>org.jvnet.jaxb2_commons</groupId>
 							<artifactId>jaxb2-basics-annotate</artifactId>
-							<version>${jaxb2.basics.annotate.version}</version>
+							<version>${jaxb2-basics-annotate.version}</version>
 						</plugin>
 					</plugins>
 				</configuration>

@@ -3,8 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.steps;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import gov.va.ascent.framework.log.AscentLogger;
+import gov.va.ascent.framework.log.AscentLoggerFactory;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -20,7 +20,7 @@ public class GenericSteps {
 	
 	private BaseStepDefHandler handler = null;
 
-	final Logger LOGGER = LoggerFactory.getLogger(GenericSteps.class);
+	private static final AscentLogger LOGGER = AscentLoggerFactory.getLogger(GenericSteps.class);
 
 	public GenericSteps(BaseStepDefHandler handler) {
 		this.handler = handler;
